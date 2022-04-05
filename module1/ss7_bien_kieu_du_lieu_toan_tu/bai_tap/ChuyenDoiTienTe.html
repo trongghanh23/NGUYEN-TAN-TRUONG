@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <table>
+        <tr>
+            <th>Amount</th>
+            <th>From currency</th>
+            <th> To currency</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td><input type="number" id="from" value="tien"></td>
+            <td>
+                <select id="vn">
+                    <option value="vnd">vietnam</option>
+                    <option value="usd">usd</option>
+                    <option value="man">nhat</option>
+                </select>
+            </td>
+            <td>
+                <select id="doLa">
+                    <option value="usd">usd</option>
+                    <option value="vnd">vietnam</option>
+                    <option value="man">nhat</option>
+                </select>
+            </td>
+            <td>
+                <button type="button" onclick="convert()">convert</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<p>Result: </p>
+<p id="result">0</p>
+<script>
+    function convert() {
+        let ketQua;
+        let amount = document.getElementById("from").value
+        let from = document.getElementById("vn").value
+        let to = document.getElementById("doLa").value
+        if (from == 'vnd' && to == 'usd') {
+
+            ketQua = amount / 23000
+        } else if (from == 'usd' && to == 'vnd') {
+            ketQua = amount * 23000
+        } else if (from=='vnd'&&to=='man'){
+            ketQua=amount/21571
+        }else if (from=='man'&&to=='vnd'){
+            ketQua=amount*21571
+        }
+        else {
+            ketQua = amount
+        }
+        document.getElementById('result').innerHTML = ketQua + to
+
+    }
+</script>
+
+</body>
+</html>

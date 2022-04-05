@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <h1>Caculator</h1>
+    <input type="number" id="number1" value="so1">
+    <input type="number" id="number2" value="so2"><br>
+    <button type="button" onclick="sum('cong')">Addition(+)</button>
+    <button type="button" onclick="sum('tru')">Addition(-)</button>
+    <button type="button" onclick="sum('nhan')">Addition(X)</button>
+    <button type="button" onclick="sum('chia')">Addition(/)</button>
+
+</form>
+<p>Result: </p>
+<p id="result">0</p>
+<script>
+    function sum(tinh) {
+
+        let a = parseInt(document.getElementById('number1').value)
+        let b = parseInt(document.getElementById('number2').value)
+        if(tinh === 'cong'){
+            document.getElementById('result').innerHTML=a+b
+        }else if(tinh ==='tru'){
+            document.getElementById('result').innerHTML=a-b
+        }else if(tinh ==='nhan'){
+            document.getElementById('result').innerHTML=a*b
+        }else {
+            document.getElementById('result').innerHTML=a/b
+        }
+
+    }
+
+</script>
+</body>
+</html>
