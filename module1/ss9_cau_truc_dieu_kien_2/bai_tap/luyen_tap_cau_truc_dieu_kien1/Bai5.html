@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let testScores=parseFloat(prompt("nhập điểm bài kiểm tra"))
+    let midtermExamScore=parseFloat(prompt("nhập điểm thi giữa kì"))
+    let finalExamScore=parseFloat(prompt("nhập điểm thi cuối kì"))
+    sum=(testScores+midtermExamScore*2+finalExamScore*3)/6
+   if (sum>=8){
+       alert("học sinh giỏi")
+   }else if (sum>=6.5){
+       alert("học sinh khá")
+   }else if (sum>=4.5){
+       alert("học sinh trung binh")
+   }else {
+       alert("học sinh yếu")
+   }
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table cellspacing="30" border="1" style="height: 200px;weight: 200px">
+    <tr>
+        <td colspan="4"><input type="number" id="kq"  ></td>
+    </tr>
+    <tr>
+
+        <td>
+            <button type="button" onclick="sum('1')">1</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('2')">2</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('3')">3</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('+')">+</button>
+        </td>
+    </tr>
+    <tr>
+
+        <td>
+            <button type="button" onclick="sum('4')">4</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('5')">5</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('6')">6</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('-')">-</button>
+        </td>
+    </tr>
+    <tr>
+
+        <td>
+            <button type="button" onclick="sum('7')">7</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('8')">8</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('9')">9</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('*')">x</button>
+        </td>
+    </tr>
+    <tr>
+
+        <td>
+            <button type="button" onclick="sum('c')">c</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('0')">0</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('=')">=</button>
+        </td>
+        <td>
+            <button type="button" onclick="sum('/')">/</button>
+        </td>
+    </tr>
+</table>
+<script>
+    let a = ''
+
+    function sum(value) {
+        if (value == '=') {
+
+            a = eval(a ? a : 0)
+        } else if (value == 'c') {
+            a = ''
+        } else {
+            a += value
+        }
+
+        document.getElementById("kq").value = a
+    }
+</script>
+</body>
+</html>

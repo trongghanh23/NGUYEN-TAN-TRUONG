@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let chuDien=parseFloat(prompt("nhập chữ điện"))
+    let tienDien=0
+    if (chuDien>100){
+        tienDien=chuDien*3500
+        alert("tiền điện là"+tienDien)
+    }else if (chuDien>50){
+        tienDien=chuDien*3000
+        alert("tiền điện là"+tienDien)
+    }else if (chuDien>25){
+        tienDien=chuDien*2500
+        alert("tiền điện là"+ tienDien)
+    }else {
+        tienDien=chuDien*2000
+        alert("tiền điện là"+tienDien)
+    }
+</script>
+</body>
+</html>
