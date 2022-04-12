@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let n = 8;
+
+    for (let i = 1; i <= n; i++) {
+        document.write('<br>');
+        for (let j = 1; j <= i; j++) {
+            document.write('*');
+        }
+    }
+    document.write('<br>')
+
+    for (let i = n; i >= 1; i--) {
+        document.write('<br>');
+        for (let j = 1; j <= i; j++) {
+            document.write('*');
+        }
+
+    }
+
+
+    for (let i = 0; i < n; i++) {
+        document.write('<br>')
+        for (let j = i; j < n; j++) {
+            document.write('&nbsp&nbsp');
+        }
+        for (let j = 0; j <= i; j++) {
+            document.write('*')
+        }
+    }
+    document.write('<br>')
+    for (let i = n; i >=0; i--) {
+        document.write('<br>')
+        for (let j = i; j < n; j++) {
+            document.write('&nbsp&nbsp');
+        }
+        for (let j = 0; j < i; j++) {
+            document.write('*')
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let n3 = 0
+    let n1 = 0
+    let n2 = 1
+
+    while (true) {
+        n3 = n1 + n2
+        if (n3 % 5 === 0) {
+            document.write("số đầu tiên trong dãy fibonacci chia hết cho 5 là:" + n3)
+            break;
+        }
+        n1 = n2
+        n2 = n3
+
+    }
+</script>
+</body>
+</html>

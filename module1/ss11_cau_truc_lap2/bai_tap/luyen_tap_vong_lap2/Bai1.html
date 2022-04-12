@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let n=parseInt(prompt('nhập n'))
+    let n3=0
+    let n1=0
+    let n2=1
+    document.write(n1+'<br>')
+    document.write(n2+'<br>')
+    for (let i=2; i<n;i++){
+        n3=n1+n2
+        document.write(n3+'<br>')
+        n1=n2
+        n2=n3
+    }
+</script>
+</body>
+</html>
