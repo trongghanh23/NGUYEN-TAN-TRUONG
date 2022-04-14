@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let array = []
+    let n = parseInt(prompt("nhập mảng số nguyên"))
+    array.push(n)
+
+    let number = parseInt(prompt("nhập số nguyên"))
+    let flag = false
+    for (let i = 0; i < array.length; i++) {
+
+        if (number == array[i]) {
+            flag = true
+            break
+
+        }
+    }
+    if (flag == true) {
+        document.write(number + "là số   nằm trong mảng array")
+    } else {
+        document.write(number + "là số k nằm trong mảng array")
+    }
+</script>
+</body>
+</html>

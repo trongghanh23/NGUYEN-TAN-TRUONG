@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button type="button" onclick="randomnumber()">Chơi</button>
+<script>
+    function randomnumber() {
+        let a = parseInt(prompt('nhâp khoảng bắt đầu'));
+        let b = parseInt(prompt('nhập khoảng kết thức'));
+        let random = Math.floor(Math.random() * (b - a + 1)) + a;
+        let i = 0;
+        do {
+            let c = parseInt(prompt('nhập số bạn đoán'));
+            if (c < random) {
+                alert('số bạn đoán bé hơn');
+            } else if (c > random) {
+                alert('số bạn đoán lớn hơn');
+            } else {
+                alert('chúc mừng bạn đã đoán trúng');
+                break;
+            }
+            i++;
+        }
+        while (i < 3);
+        if (i === 3) {
+            alert('Chúc bạn may mắn lần sau');
+        }
+    }
+</script>
+</body>
+</html>

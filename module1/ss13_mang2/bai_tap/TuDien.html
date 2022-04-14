@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+
+    <tr>
+        <td>
+            <input id="anh" placeholder="từ tiếng anh" type="text" value="" >
+        </td>
+
+        <td>
+            <button onclick="convert()">Convert</button>
+        </td>
+        <td>
+
+            <input id="tieng" placeholder="tiếng việt" type="text"  >
+        <td>
+    </tr>
+</table>
+
+<script>
+
+    function convert() {
+        let english = ["cat", "dog", "tree", 'book', "lamp"]
+        let vietnamese = ["con mèo", "con chó", "cây cối", "quyển sach", "cái đèn"]
+        let language = document.getElementById('anh').value
+        let index = -1
+        for (let i = 0; i < english.length; i++) {
+            if (language === english[i]) {
+                index = i
+
+                document.getElementById("tieng").value = vietnamese[index]
+                index = 1
+            }
+        }
+        if (index === -1) {
+            document.getElementById("tieng").value = "không có nghĩa"
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number=[11,5,6,4,7,7,3,57]
+    let max=0
+    let sum=0
+    let avg=0
+    for (let i=0;i<number.length;i++){
+        sum+=number[i]
+        avg=sum/number.length
+        if (number[i]>max){
+            max=number[i]
+        }
+    }
+
+    document.write("số lớn nhất trong mảng là:"+max+"<br>")
+    document.write("giá trị trung bình của các phần tử"+avg)
+</script>
+</body>
+</html>
