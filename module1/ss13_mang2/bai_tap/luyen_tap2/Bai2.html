@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let character = ['c', 's', 'c', '2', '6', '1']
+    let first = 0
+    let last = character.length - 1
+    let num;
+    while (first < last) {
+        num = character[first]
+        character[first] = character[last]
+        character[last] = num
+        first++
+        last--
+    }document.write(character)
+
+
+</script>
+</body>
+</html>

@@ -6,10 +6,10 @@
 </head>
 <body>
 <script>
-    let character = "-1mff39-28-4-3-4"
+    let character = "-1mff3-9-28-4-3-4"
     let num = 0
     for (let i = 0; i < character.length; i++) {
-        if (character[i] == "-" && isNaN(character[i])) {
+        if (character[i] == "-" && !isNaN(character[i+1])) {
             num++
         }
 

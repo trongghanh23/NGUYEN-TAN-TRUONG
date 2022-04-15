@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let array = [];
+    let n = 5;
+    for (let i = 0; i < n; i++) {
+        array.push(parseInt(prompt("nhập phần tử")))
+    }
+
+    let number;
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < i; j++) {
+            if (array[i]>array[j]) {
+                number = array[i]
+               array[i] = array[j]
+              array[j] = number
+            }
+        }
+    }
+    document.write("mảng sắp xếp giảm dần"+array)
+
+</script>
+</body>
+</html>

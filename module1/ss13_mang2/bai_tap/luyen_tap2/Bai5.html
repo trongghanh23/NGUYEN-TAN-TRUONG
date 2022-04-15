@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let character1=prompt("nhập chuỗi thứ nhất")
+    let character2=prompt("nhập chuỗi thứ hai")
+
+    if (character1.length!==character2.length){
+        document.write("hai chuỗi nhập vào không bằng nhau")
+    }else {
+        let flag=false
+
+        for (let i=0;i<character1.length;i++){
+            if (character1[i]===character2[i]){
+                flag=true
+
+            }
+        }
+        if (flag===true){
+            alert("hai chuỗi  bằng nhau")
+        }else {
+            alert("hai chuỗi không bằng nhau")
+        }
+    }
+</script>
+</body>
+</html>

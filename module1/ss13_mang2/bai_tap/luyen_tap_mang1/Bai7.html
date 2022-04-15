@@ -5,6 +5,33 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    let array = []
+    let n = 5
+    for (let i = 0; i < n; i++) {
+        array.push(parseInt(prompt("nhập vào 10 phần tử")))
+    }
 
+    let v = parseInt(prompt("nhập số cần kiểm tra"))
+
+    let flag = false
+    let j;
+    for (let i = 0; i < array.length; i++) {
+
+        if (v === array[i]) {
+            for (j = i; j < array.length; j++) {
+                array[j] = array[j + 1]
+            }
+            array[j - 1] = 0
+            document.write(array)
+            flag = true
+
+        }
+    }
+    if (flag === false) {
+        document.write("số vừa nhập không nằm trong mảng")
+    }
+
+</script>
 </body>
 </html>
