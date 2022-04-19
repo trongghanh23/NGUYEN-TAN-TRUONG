@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+
+    <tr>
+        <td>
+            <input id="ngoisao" placeholder="tên ngôi sao" type="text" value="">
+        </td>
+
+        <td>
+            <button onclick="convert()">Convert</button>
+        </td>
+        <td>
+
+            <input id="chomsao" placeholder="chòm sao" type="text">
+        <td>
+    </tr>
+</table>
+<script>
+
+    let array1 = ['Polaris', ' Aldebaran', 'Deneb', 'Vega', 'Altair', 'Dubhe', 'Regulus'];
+    let array2 = ['Ursa Minor', 'Tarurus', 'Cygnus', 'Lyra', 'Aquila', 'Ursa Major', 'Leo'];
+
+    function convert() {
+
+        let srt = document.getElementById('ngoisao').value;
+        let index = -1;
+        for (let i = 0; i < array1.length; i++) {
+            if (srt === array1[i]) {
+                index = i;
+                document.getElementById("chomsao").value = array2[index];
+            }
+        }
+        if (index === -1) {
+            document.getElementById("chomsao").value = "không có nghĩa";
+        }
+    }
+
+
+</script>
+</body>
+</html>

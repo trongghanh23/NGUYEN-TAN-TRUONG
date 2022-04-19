@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = parseInt(prompt("nhập số tính giai thừa"));
+
+    function caculateFactorial(number) {
+        let factorial = 1;
+        for (let i = 1; i <= number; i++) {
+            factorial *= i;
+        }
+        return factorial;
+    }
+
+    let giaiThua = caculateFactorial(a);
+    document.write("giai thừa của " + a + "là:" + giaiThua);
+</script>
+
+
+</body>
+</html>

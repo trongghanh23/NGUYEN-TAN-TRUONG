@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number1 = parseInt(prompt("nhập số nguyên thứ nhất"));
+    let number2 = parseInt(prompt("nhập số nguyên thứ nhì"));
+    let number3 = parseInt(prompt("nhập số nguyên thứ ba"));
+
+    function number(n1,n2,n3) {
+
+        if (n1 < n2 && n1 < n3 || n1 === n2 && n1 < n3) {
+            return n1;
+        } else if (n2 < n3 && n2 < n1 || n2 === n3 && n2 < n1) {
+            return n2;
+
+        } else {
+            return n3;
+        }
+
+    }
+
+    let soSanhSo = number(number1, number2, number3)
+    alert(soSanhSo);
+</script>
+</body>
+</html>

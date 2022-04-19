@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let n1 = parseInt(prompt("nhập số thứ nhất"));
+    let n2 = parseInt(prompt("nhập số thứu 2"));
+
+    function setNumber(a,b) {
+        if (a > b) {
+            alert(a + ">" + b);
+        } else {
+            sum = a + b;
+            return "tổng hai số là:"+sum;
+        }
+    }
+
+    let num = setNumber(n1, n2);
+    document.write(num);
+</script>
+
+</body>
+</html>

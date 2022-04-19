@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let num = 0;
+    let number = isPrime(num)
+    function isPrime(count) {
+        let n = 0;
+
+        while (count <= 1000) {
+            let flag = true;
+            if (n < 2) {
+                flag = false;
+            } else {
+                for (let i = 2; i < n; i++) {
+                    if (n % i == 0) {
+                        flag = false;
+
+                    }
+                }
+            }
+            if (flag == true) {
+                count++;
+                document.writeln(n);
+            }
+            n++;
+        }
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

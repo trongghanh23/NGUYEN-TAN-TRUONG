@@ -9,22 +9,22 @@
     let array = []
     let n = 5
     for (let i=0;i<n;i++){
-     array.push( parseInt(prompt("nhập phần tử trong mảng")))
+     array.push( parseInt(prompt("nhập phần tử trong mảng")));
     }
-    let number = parseInt(prompt("nhập số nguyên"))
-    let flag = false
+    let number = parseInt(prompt("nhập số nguyên"));
+    let flag = false;
     for (let i = 0; i < array.length; i++) {
 
         if (number == array[i]) {
-            flag = true
-            break
+            flag = true;
+            break;
 
         }
     }
     if (flag == true) {
-        document.write(number + "là số   nằm trong mảng array")
+        document.write(number + "là số   nằm trong mảng array");
     } else {
-        document.write(number + "là số k nằm trong mảng array")
+        document.write(number + "là số k nằm trong mảng array");
     }
 </script>
 </body>

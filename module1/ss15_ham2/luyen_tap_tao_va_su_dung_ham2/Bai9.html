@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let character = [];
+    for (let i = 0; i < 5; i++) {
+        character.push(prompt("nhập vào mảng kí tự bất kì"));
+    }
+    let n = prompt("nhập kí tự bất kì");
+
+
+    function arrayCharacter(array,b) {
+        let count = 0;
+        for (let i = 0; i < array.length; i++) {
+            if (b === array[i]) {
+                count++
+            }
+
+        }
+        if (count !== 0) {
+            return "số kí tự trong mảng giống nhau là:"+count;
+
+        } else {
+
+            return -1;
+        }
+    }
+    let num=arrayCharacter(character,n)
+
+    document.write(num)
+</script>
+</body>
+</html>
