@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class HinhChuNhat {
+        constructor(chieuDai, chieuRong) {
+            this.chieuDai = chieuDai
+            this.chieuRong = chieuRong
+        }
+
+        getChieuDai() {
+            return this.chieuDai
+        }
+
+        setChieuDai(chieuDaiMoi) {
+            this.chieuDai = chieuDaiMoi
+        }
+
+        getChieuRong() {
+            return this.chieuRong
+        }
+
+        setChieuRong(chieuRongMoi) {
+            this.chieuRong = chieuRongMoi
+        }
+
+        tinhDienTich() {
+            return this.chieuDai * this.chieuRong
+
+        }
+
+        tinhChuVi() {
+            return (this.chieuDai + this.chieuRong) * 2
+
+        }
+    }
+
+    let rectangle = new HinhChuNhat(2, 4)
+    rectangle.setChieuDai(5)
+    rectangle.setChieuRong(7)
+    document.write("diện tích hình chữ nhật là:" + rectangle.tinhDienTich() + "<br>")
+    document.write("chu vi hình chữ nhật là:" + rectangle.tinhChuVi())
+
+</script>
+</body>
+</html>

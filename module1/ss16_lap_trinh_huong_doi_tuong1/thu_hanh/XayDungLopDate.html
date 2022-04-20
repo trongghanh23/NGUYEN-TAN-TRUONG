@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    class Date {
+        constructor(day, month, year) {
+            this.day = day
+            this.month = month
+            this.year = year
+        }
+
+        setDay(dayMoi) {
+            this.day = dayMoi
+        }
+
+        getDay() {
+            return this.day
+        }
+
+        setMonth(monthMoi) {
+            this.month = monthMoi
+        }
+
+        getMonth() {
+            return this.month
+        }
+
+        setYear(yearMoi) {
+            this.year = yearMoi
+        }
+
+        getYear() {
+            return this.year
+        }
+
+        toString() {
+
+            return this.day + "/" + this.month + "/" + this.year;
+        }
+    }
+
+    let ngayThang = new Date("12", "1", "2022")
+
+    ngayThang.setDay("13")
+    ngayThang.setMonth("2")
+    ngayThang.setYear("2023")
+
+    alert(ngayThang.toString())
+
+</script>
+</body>
+</html>

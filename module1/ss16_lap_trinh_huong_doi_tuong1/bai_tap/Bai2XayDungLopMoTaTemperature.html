@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class NhietDo{
+        constructor(doC) {
+            this.doC=doC
+        }
+        cSangF(){
+            return this.doC*1.8+32
+        }
+        cSangKenVin(){
+            return this.doC+273.15
+        }
+
+    }
+    let nhietDo=new NhietDo(25)
+    document.write(nhietDo.doC+"độ c ="+nhietDo.cSangF()+"F"+"<br>")
+    document.write(nhietDo.doC+"độ c ="+nhietDo.cSangKenVin()+"K")
+</script>
+</body>
+</html>

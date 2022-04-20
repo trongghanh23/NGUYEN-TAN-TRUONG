@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let luong = parseFloat(prompt("nhập vào số lương"));
+    let thue = 0;
+    let luongThatNhan = 0;
+    if (luong >= 15000000) {
+        thue = 20;
+    } else if (luong > 7000000) {
+        thue = 10;
+    } else {
+        thue = 5;
+    }
+    luongThatNhan = luong - luong * thue / 100;
+    document.write("thuế" + thue + "%" + "lương thực nhận là" + luongThatNhan);
+</script>
+</body>
+</html>
