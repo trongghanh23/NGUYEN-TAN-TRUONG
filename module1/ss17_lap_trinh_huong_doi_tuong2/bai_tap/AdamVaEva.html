@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Apple {
+
+        constructor(weightApple) {
+            this.weightApple = weightApple
+        }
+
+        setWeightApple(newWeightApple) {
+            this.weightApple = newWeightApple
+
+        }
+
+        getWeightApple() {
+            return this.weightApple
+        }
+
+        decrease() {
+
+            this.weightApple--
+
+        }
+
+    }
+
+    class Human {
+        constructor(name, gender, weightHuman) {
+            this.name = name
+            this.gender = gender
+            this.weightHuman = weightHuman
+        }
+
+        setApple(apple) {
+            this.apple = apple
+        }
+
+        setName(newName) {
+            this.name = newName
+        }
+
+        getName() {
+            return this.name
+        }
+
+        setWeightHuman(newWeightHuman) {
+            this.weightHuman = newWeightHuman
+        }
+
+        getWeightHuman(newWeightHuman) {
+            return this.weightHuman
+        }
+
+        setGender(newGender) {
+            this.gender = newGender
+        }
+
+        eat() {
+            if (this.apple.getWeightApple()) {
+                this.weightHuman++
+                this.apple.decrease()
+            }else {
+                alert("ăn hết rồi")
+            }
+
+        }
+
+        say(value) {
+            return value
+
+        }
+    }
+
+
+    let adam = new Human("adam", "male", 60)
+    let eva = new Human("eva", "female", 45)
+    let apple = new Apple(10)
+    adam.setApple(apple)
+    eva.setApple(apple)
+
+    document.write("adam nói:" + adam.say("eva em ăn trước đi") + "<br>")
+    eva.eat();
+    document.write("trọng lượng táo còn" + apple.weightApple + "<br>")
+    document.write("số cân nặng eva" + eva.getWeightHuman() + "<br>")
+    document.write("eva nói:" + eva.say("thôi anh ăn đi") + "<br>")
+    adam.eat()
+    document.write("số cân nặng adam" + adam.getWeightHuman() + "<br>")
+    document.write("trọng lượng táo còn"+apple.weightApple)
+
+
+</script>
+</body>
+</html>
