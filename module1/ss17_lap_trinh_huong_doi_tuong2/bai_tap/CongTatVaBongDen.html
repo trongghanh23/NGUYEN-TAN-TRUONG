@@ -5,36 +5,62 @@
     <title>Title</title>
 </head>
 <body>
+<button type="button"onclick="switchButtonOnOffLamp()">Switch</button>
 <script>
-class SwitchButton{
-    constructor(status,lamp) {
-        this.status=status
-        this.lamp=lamp
+    class ElectricLamp {
+        constructor() {
+            this.status = false
+        }
+
+        getStatus() {
+            return this.status
+        }
+
+        setStatus(status) {
+            this.status = status
+        }
+
+        turnOn() {
+            this.status = true
+            alert("đèn sáng")
+
+        }
+
+        turnOff() {
+            this.status = false
+            alert("đèn tắt")
+
+        }
     }
-    connectToLamp(){
+
+    class SwitchButton {
+        constructor(lamp) {
+
+            this.lamp = lamp
+        }
+
+        switchOff() {
+            this.lamp.turnOff()
+        }
+
+        switchOn() {
+            this.lamp.turnOn()
+        }
+    }
+
+    let electricLamp = new ElectricLamp()
+    let switchButton = new SwitchButton(electricLamp)
+
+
+    function switchButtonOnOffLamp() {
+        if (electricLamp.getStatus() === false) {
+            switchButton.switchOn()
+        } else {
+            switchButton.switchOff()
+        }
 
     }
-    switchOff(){
 
-    }
-    switchOn(){
-
-    }
-}
-class ElectricLamp{
-    constructor(status) {
-        this.status=status
-    }
-    ElectricLamp(){
-
-    }
-    turnOff(){
-
-    }
-    turnOn(){
-
-    }
-}
 </script>
 </body>
 </html>

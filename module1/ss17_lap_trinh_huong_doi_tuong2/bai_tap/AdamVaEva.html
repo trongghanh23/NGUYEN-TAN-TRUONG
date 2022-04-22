@@ -21,9 +21,19 @@
             return this.weightApple
         }
 
+        isEmpty() {
+            if (this.weightApple == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         decrease() {
 
-            this.weightApple--
+            if (this.weightApple > 0) {
+                this.weightApple--
+            }
 
         }
 
@@ -48,6 +58,7 @@
             return this.name
         }
 
+
         setWeightHuman(newWeightHuman) {
             this.weightHuman = newWeightHuman
         }
@@ -60,37 +71,61 @@
             this.gender = newGender
         }
 
+        isMale() {
+            if (this.gender == "Male") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        checkApple(apple) {
+            if (apple.getWeightHuman() > 0) {
+                return true;
+            } else {
+                return false
+            }
+        }
+
         eat() {
-            if (this.apple.getWeightApple()) {
+            if (apple.getWeightApple() > 0) {
                 this.weightHuman++
-                this.apple.decrease()
-            }else {
+                apple.decrease()
+            } else {
                 alert("ăn hết rồi")
             }
 
         }
 
-        say(value) {
-            return value
-
+        say(content) {
+            return content
         }
     }
 
+    let apple = new Apple(10)
 
     let adam = new Human("adam", "male", 60)
     let eva = new Human("eva", "female", 45)
-    let apple = new Apple(10)
-    adam.setApple(apple)
-    eva.setApple(apple)
+    document.write("trong lượng táo ban đầu " + apple.getWeightApple() + "<br>")
+    document.write("trọng lượng adam ban đầu" + adam.getWeightHuman() + "<br>")
+    document.write(" trọng lượng eva ban đầu" + eva.getWeightHuman() + "<br>")
+    document.write("<hr>")
+    while (apple.isEmpty() == false) {
 
-    document.write("adam nói:" + adam.say("eva em ăn trước đi") + "<br>")
-    eva.eat();
-    document.write("trọng lượng táo còn" + apple.weightApple + "<br>")
-    document.write("số cân nặng eva" + eva.getWeightHuman() + "<br>")
-    document.write("eva nói:" + eva.say("thôi anh ăn đi") + "<br>")
-    adam.eat()
-    document.write("số cân nặng adam" + adam.getWeightHuman() + "<br>")
-    document.write("trọng lượng táo còn"+apple.weightApple)
+        document.write("adam nói :em ăn đi" + "<br>");
+        eva.eat();
+        document.write("trọng lượng táo còn" + apple.weightApple + "<br>")
+        document.write("số cân nặng eva" + eva.getWeightHuman() + "<br>")
+        document.write("eva nói: anh ăn đi" + "<br>")
+        adam.eat()
+        document.write("số cân nặng adam" + adam.getWeightHuman() + "<br>")
+        document.write("trọng lượng táo còn" + apple.weightApple + "<br>")
+    }
+    document.write("<hr>")
+
+    document.write("trọng lượng khi táo bị ăn hết " + apple.getWeightApple() + "<br>");
+    document.write("trọng lượng Adam tăng lên sau khi ăn táo: " + adam.getWeightHuman() + "<br>");
+    document.write("trọng lượng Eva tăng lên sau khi ăn táo: " + eva.getWeightHuman() + "<br>");
 
 
 </script>
