@@ -14,6 +14,13 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> userList() {
-        return iUserRepository.
+        return iUserRepository.findAll();
     }
+
+    @Override
+    public void save(User user) {
+        iUserRepository.save(user);
+    }
+
+
 }
