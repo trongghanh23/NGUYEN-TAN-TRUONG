@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<!--<form class="d-flex">-->
+<!--    <input class="form-control me-2" type="search" name="search"-->
+<!--           placeholder="Search By Name" th:value="${searchName}" aria-label="Search">-->
+<!--    <button class="btn btn-outline-success" type="submit" name="name">Search</button>-->
+<!--</form>-->
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address</th>
+
+    </tr>
+  <tr th:each="blog,loop:${blogList}">
+      <td th:text="${loop.count}"></td>
+      <th th:text="${blog.name}"></th>
+      <th th:text="${blog.category}"></th>
+  </tr>
+</table>
+
+</body>
+</html>

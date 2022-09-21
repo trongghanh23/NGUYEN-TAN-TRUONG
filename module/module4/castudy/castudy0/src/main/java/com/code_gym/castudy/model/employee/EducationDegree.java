@@ -1,0 +1,17 @@
+package com.code_gym.castudy.model.employee;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.List;
+
+@Entity
+@Table(name = "educationDegree")
+public class EducationDegree {
+    @Id
+    private Integer id;
+    private String name;
+    @OneToMany(mappedBy = "educationDegree")
+    private List<Employee>employeeList;
+}
