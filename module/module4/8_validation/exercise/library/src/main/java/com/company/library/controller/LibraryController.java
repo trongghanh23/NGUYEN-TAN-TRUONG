@@ -1,23 +1,21 @@
 package com.company.library.controller;
 
-public class LibraryController {
-    import com.codegym.manage_library.model.Book;
-import com.codegym.manage_library.model.Library;
-import com.codegym.manage_library.service.IBookService;
-import com.codegym.manage_library.service.ILibraryService;
-import com.codegym.manage_library.service.ITrafficService;
+import com.company.library.model.Book;
+import com.company.library.model.Library;
+import com.company.library.service.IBookService;
+import com.company.library.service.ILibraryService;
+import com.company.library.service.ITrafficService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation .*;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-
     @Controller
     @RequestMapping("/library")
-    public class LibraryController {
+    public class    LibraryController {
 
         @Autowired
         private ILibraryService iLibraryService;
@@ -48,27 +46,15 @@ import java.util.Optional;
             return "redirect:/library";
         }
 
-        @GetMapping("/show-detail")
-        public String showDetail(@RequestParam Optional<Integer> id, Model model) {
-            if (id.isPresent()) {
-                this.iLibraryService.borrowBook(id.get());
-            }
-            List<Book> bookList = this.iBookService.findAll();
-            model.addAttribute("bookList", bookList);
-            return "list-borrow";
+        @GetMapping("/edit")
+        public String editBlog(@PathVariable Integer id , Model model){
+            model.addAttribute("blog",iBookService.(id));
+            return "edit";
         }
-
-        @GetMapping("/borrow")
-        public String borrowBook(@RequestParam Integer id) {
-            this.iLibraryService.setQuantity(id);
-            this.iBookService.setStatus(id);
-            return "redirect:/library/show-details";
-        }
-
-        @GetMapping("/return")
-        public String returnBook(@RequestParam Integer bookCode) throws Exception {
-            this.iBookService.returnBook(bookCode);
-            return "redirect:/library";
+        @PostMapping("/edit")
+        public String updateBlog(Blogger blogger){
+            this.iBlogService.save(blogger);
+            return "redirect:/bloggers";
         }
 
         @ExceptionHandler(value = Exception.class)
@@ -76,4 +62,4 @@ import java.util.Optional;
             return "error";
         }
     }
-}
+
