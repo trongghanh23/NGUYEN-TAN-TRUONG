@@ -19,14 +19,12 @@ public class BookAspect {
     @AfterReturning("execution(* com.code_gym.book.controller.BookController.showBorrow(..))")
     public void logInfoBorrow(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
-        String args = Arrays.toString(joinPoint.getArgs());
         System.err.println("Method " + methodName + " done!");
     }
 
     @AfterReturning("execution(* com.code_gym.book.controller.BookController.showPay(..))")
     public void logInfoReturn(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
-        String args = Arrays.toString(joinPoint.getArgs());
         System.err.println("Method " + methodName + " done!");
     }
 
@@ -38,7 +36,6 @@ public class BookAspect {
 
     public void logInfoVisit(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
-        String args = Arrays.toString(joinPoint.getArgs());
         count++;
         System.err.println("Method " + methodName + " done! (logTime=" + count + ")");
     }
