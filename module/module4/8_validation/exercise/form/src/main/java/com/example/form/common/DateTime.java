@@ -14,8 +14,8 @@ public class DateTime {
             String age = userDto.getAge();
             LocalDate localDate = LocalDate.parse(age);
             int checkAge = Period.between(localDate, LocalDate.now()).getYears();
-            if (checkAge <= 18 & checkAge <= 100) {
-                errors.rejectValue("age", "", "age >=18 and age <=100");
+            if (checkAge < 18 && checkAge <= 100) {
+                errors.rejectValue("age", "", "age >18 and age <=100");
             }
         } catch (Exception e) {
             errors.rejectValue("age", "", "please input");

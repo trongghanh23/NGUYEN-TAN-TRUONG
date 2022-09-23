@@ -2,11 +2,13 @@ package com.code_gym.book.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+
+import java.util.Arrays;
 
 @Component
 @Aspect
@@ -14,24 +16,32 @@ public class BookAspect {
 
     private int count = 0;
 
-    @Pointcut("within(com.code_gym.book.BookController*)")
+    @AfterReturning("execution(* com.code_gym.book.controller.BookController.showBorrow(..))")
+    public void logInfoBorrow(JoinPoint joinPoint) {
+        String methodName = joinPoint.getSignature().getName();
+        String args = Arrays.toString(joinPoint.getArgs());
+        System.err.println("Method " + methodName + " done!");
+    }
+
+    @AfterReturning("execution(* com.code_gym.book.controller.BookController.showPay(..))")
+    public void logInfoReturn(JoinPoint joinPoint) {
+        String methodName = joinPoint.getSignature().getName();
+        String args = Arrays.toString(joinPoint.getArgs());
+        System.err.println("Method " + methodName + " done!");
+    }
+
+    @Pointcut("execution(* com.code_gym.book.controller.BookController.*(..))")
     public void allMethodPointCut() {
     }
 
     @After("allMethodPointCut()")
-    public void afterAllMethod(JoinPoint joinPoint) {
+
+    public void logInfoVisit(JoinPoint joinPoint) {
+        String methodName = joinPoint.getSignature().getName();
+        String args = Arrays.toString(joinPoint.getArgs());
         count++;
-        System.out.println("Method name: " + joinPoint.getSignature().getName() +
-                " number visit book " + count);
+        System.err.println("Method " + methodName + " done! (logTime=" + count + ")");
     }
 
-    @Pointcut("within(*com.code_gym.book.BookController*)")
-    public void payAndBorrowMethodPointCut() {
-    }
-
-    @After("payAndBorrowMethodPointCut()")
-    public void afterPayAndBorrowMethod(JoinPoint joinPoint) {
-        System.out.println("Method name: " + joinPoint.getSignature().getName() + " | Time: " + LocalDateTime.now());
-    }
 
 }
