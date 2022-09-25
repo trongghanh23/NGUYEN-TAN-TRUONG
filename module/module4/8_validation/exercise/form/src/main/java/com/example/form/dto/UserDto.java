@@ -26,7 +26,6 @@ public class UserDto implements Validator {
     @Pattern(regexp = "^(0([0-9]{9}))$", message = "Wrong format (0xxxxxxxxx)")
     private String phoneNumber;
 
-    @NotBlank(message = "please input!")
     private String age;
 
     @NotBlank(message = "please input!")
