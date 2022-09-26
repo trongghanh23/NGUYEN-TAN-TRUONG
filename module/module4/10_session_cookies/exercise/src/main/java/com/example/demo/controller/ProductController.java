@@ -62,6 +62,7 @@ public class ProductController {
     public String addToCart(@PathVariable Long id,
 
                             @SessionAttribute("cart") CartDto cart) {
+
         Optional<Product> productDetail = productService.finById(id);
         if (productDetail.isPresent()) {
             ProductDto productDto = new ProductDto();
