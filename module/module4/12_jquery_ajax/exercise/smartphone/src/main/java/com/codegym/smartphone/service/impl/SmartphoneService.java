@@ -4,6 +4,8 @@ import com.codegym.smartphone.model.Smartphone;
 import com.codegym.smartphone.repository.ISmartphoneRepository;
 import com.codegym.smartphone.service.ISmartphoneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,8 +16,8 @@ public class SmartphoneService implements ISmartphoneService {
     private ISmartphoneRepository smartPhoneRepository;
 
     @Override
-    public Iterable<Smartphone> findAll() {
-        return smartPhoneRepository.findAll();
+    public Page<Smartphone> findAll(Pageable pageable) {
+        return smartPhoneRepository.findAll(pageable);
     }
 
     @Override
@@ -24,12 +26,12 @@ public class SmartphoneService implements ISmartphoneService {
     }
 
     @Override
-    public Smartphone save(Smartphone smartPhone) {
-        return smartPhoneRepository.save(smartPhone);
+    public void save(Smartphone smartPhone) {
+        smartPhoneRepository.save(smartPhone);
     }
 
     @Override
     public void remove(Long id) {
-        smartPhoneRepository.deleteById(id);
+        smartPhoneRepository.delete(smartPhoneRepository.findById(id).orElse(null));
     }
 }
