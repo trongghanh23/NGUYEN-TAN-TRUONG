@@ -14,7 +14,7 @@ public interface IBlogRepository extends JpaRepository<Blog,Integer> {
             "from blog\n" +
             "where `name` like :keyword ", nativeQuery = true)
     List<Blog> searchStudentWithName(@Param("keyword") String nameStudent);
-
+//    Page<Customer> findAllByNameContaining(String nameCustomer, Pageable pageable);
 //
 //    @Query(value = " select * from blogger where name like :searchName ", nativeQuery = true,
 //            countQuery = " select count(*) from (select * from blogger where name like :searchName ) temp_table ")

@@ -6,11 +6,21 @@
 
 </head>
 <body>
-<!--<form class="d-flex">-->
-<!--    <input class="form-control me-2" type="search" name="search"-->
-<!--           placeholder="Search By Name" th:value="${searchName}" aria-label="Search">-->
-<!--    <button class="btn btn-outline-success" type="submit" name="name">Search</button>-->
-<!--</form>-->
+<form action="/customer">
+    <div class="input-group mb-3">
+        <input
+                type="text"
+                class="form-control"
+                aria-describedby="button-addon2"
+                name="keyword"
+        />
+        <button class="btn btn-outline-primary" type="submit" id="button-addon2"
+                data-mdb-ripple-color="dark">
+            Search
+        </button>
+    </div>
+
+</form>
 <table>
     <tr>
         <th>No.</th>
@@ -26,5 +36,35 @@
   </tr>
 </table>
 
+<div class="row">
+    <div class="col">
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a class="page-link"
+                   th:href="@{/customer(page=${customerList.number - 1}, keyword = ${keyWordValue})}"
+                   th:if="${customerList.hasPrevious()}">
+                    Previous
+                </a>
+            </li>
+            <li class="page-item active" aria-current="page">
+                                            <span class="page-link">
+                                                <th:block th:text="${customerList.number + 1}"></th:block>
+                                                /
+                                                <th:block th:text="${customerList.totalPages}"></th:block>
+                                            </span>
+
+            </li>
+            <li class="page-item">
+                <a class="page-link"
+                   th:href="@{/customer(page=${customerList.number + 1}, keyword = ${keyWordValue})}"
+                   th:if="${customerList.hasNext()}">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+</div>
 </body>
 </html>

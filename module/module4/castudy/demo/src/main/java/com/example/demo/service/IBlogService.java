@@ -8,4 +8,6 @@ public interface IBlogService {
     List<Blog> findAllSearchAndPaging(String name);
 
 //    Page<Blogger> getAllBlog(String searchName, Pageable pageable);
+//Page<Customer> findAllSearchAndPaging(String nameCustomer, Pageable pageable);
+
 }
