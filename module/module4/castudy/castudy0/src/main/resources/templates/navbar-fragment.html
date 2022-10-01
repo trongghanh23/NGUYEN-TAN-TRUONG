@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin-fragrment::css}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg bg-primary" th:fragment="nav">
+
+    <div class="container-fluid">
+
+        <img src="https://furamavietnam.com/wp-content/uploads/2018/10/logo.png" style="height: 50px;width: 50px">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand text-light" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                style="height: 40px;width: 40px;padding: 5px">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Employee
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/Employee">Employee List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Customer
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/customer">Customer List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Service
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/facility/showCreate">Add new service</a></li>
+                        <li><a class="dropdown-item" href="/facility">Service List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Contract
+                    </a>
+                    <ul class="dropdown-menu">
+
+                        <li><a class="dropdown-item" href="/contract">Contract List</a></li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    </nav>
+<footer class="py-5 bg-secondary text-light"  th:fragment="footer">
+    <div  class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="row"><h5>Furama Resort</h5></div>
+                <div class="row"><p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></p>
+                </div>
+                <div class="row"><p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></p>
+                </div>
+                <div class="row"><p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Pricing</a></p>
+                </div>
+                <div class="row"><p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></p>
+                </div>
+                <div class="row"><p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">About</a></p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="row"> <h5>Information With Furama</h5></div>
+                <div class="row"><p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Facebook</a></p>
+                </div>
+                <div class="row"> <p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Zalo</a></p></div>
+                <div class="row"> <p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Service</a></p></div>
+                <div class="row"><p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></p></div>
+
+            </div>
+            <div class="col-lg-3">
+                <div class="row"><h5>Address</h5></div>
+                <div class="row"> <p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">090453454</a></p></div>
+                <div class="row"><p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Furama@gmail.com.vn</a></p> </div>
+                <div class="row">   <p class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Facebook Furama</a></p>
+                </div>
+
+            </div>
+            <div class="col-lg-3">
+
+                <form>
+                    <h5>Subscribe to our newsletter</h5>
+                    <p>Monthly digest of what's new and exciting from us.</p>
+                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                        <label for="newsletter1" class="visually-hidden">Email address</label>
+                        <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" style="text-align: center" >
+            <h4 >© Furama 2022 Company, Inc. All rights reserved.</h4>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
