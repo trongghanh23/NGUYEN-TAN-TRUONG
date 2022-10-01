@@ -14,18 +14,18 @@
     <div CLASS="col-8"><h1> Blog list</h1></div>
     <div CLASS="col-4">
 
-            <div class="input-group mb-3">
-                <input
-                        type="search"
-                        class="form-control"
-                        aria-describedby="button-addon2"
-                        name="keyword" id="nameBlog"
-                />
-                <button class="btn btn-outline-primary" type="submit" id="button-addon2"
-                        data-mdb-ripple-color="dark">
-                    Search
-                </button>
-            </div>
+        <div class="input-group mb-3">
+            <input
+                    type="search"
+                    class="form-control"
+                    aria-describedby="button-addon2"
+                    name="keyword" id="nameBlog"
+            />
+            <button class="btn btn-outline-primary" type="submit" id="button-addon2"
+                    data-mdb-ripple-color="dark">
+                Search
+            </button>
+        </div>
 
     </div>
 </div>
@@ -53,18 +53,21 @@
 </table>
 <script src="jquery-3.6.1.min.js"></script>
 <script>
-    
     $(document).ready(function () {
-        let blog=3;
-        setTimeout(function () {
+
+        let blog = 3;
+        let arr = 0;
+
+        getBlog()
+
+        function getBlog() {
             $("tbody").empty();
             $.ajax({
                 url: "http://localhost:8080/listBlog",
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
-
-
+                    arr = data.length;
                     let tr = [];
                     for (let i = 0; i < blog; i++) {
                         tr.push("<tr>");
@@ -79,9 +82,7 @@
 
                 }
             })
-
-        }, 2000)
-
+        }
 
         $("#button-addon2").click(function () {
             $("tbody").empty();
@@ -110,33 +111,13 @@
             })
         })
 
-        $('#load').click(function () {
-            $.ajax({
-                url: "http://localhost:8080/listBlog",
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data)
-                    $("tbody").empty();
-                    blog+=1;
-                    let tr = [];
-                    for (let i = 0; i < blog; i++) {
-                        tr.push("<tr>");
-                        tr.push("<td>" + data[i].id + "</td>")
-                        tr.push("<td>" + data[i].blogName + "</td>")
-                        tr.push("<td>" + data[i].author + "</td>")
-                        tr.push("<td>" + data[i].content + "</td>")
-                        tr.push("<td>" + data[i].category.categoryName + "</td>")
-                        tr.push("</tr>");
-                        if (blog>data.length){
-                            blog=data.length;
-                        }
-                    }
-                    $("table").append(tr.join(""));
-
-                }
-            })
-        })
+        $("#load").click(function () {
+            blog += 1;
+            if (blog > arr) {
+                blog = arr;
+            }
+            getBlog(blog)
+        });
     });
 
 </script>
