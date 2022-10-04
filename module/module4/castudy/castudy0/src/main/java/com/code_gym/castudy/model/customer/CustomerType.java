@@ -11,7 +11,7 @@ public class CustomerType {
     private Integer id;
     private String name;
     @OneToMany(mappedBy = "customType")
-    private List<Customer>customerList;
+    private List<Customer> customerList;
 
     public CustomerType() {
     }

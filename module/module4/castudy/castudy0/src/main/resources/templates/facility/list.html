@@ -6,18 +6,17 @@
     <head th:replace="~{content::css}">
         <style>
             body {
-                overflow-x:hidden;
+                overflow-x: hidden;
             }
         </style>
     </head>
 <body>
-<div class="row" th:replace="~{content::header}"></div>
+<div class="container-fluid">
+    <div class="row"><div th:replace="~{content::header}"></div></div>
+    <div class="row"><nav th:replace="~{navbar-fragment::navbar}"></nav></div>
 
-<nav th:replace="~{navbar-fragment::navbar}"></nav>
-<div class="text-center" style="margin-top: 10px"><h2>Facility List</h2></div>
+    <div class="text-center" style="margin-top: 10px"><h2>Facility List</h2></div>
 
-
-<div class="container">
 
     <div class="row">
         <div class="col-lg-4"></div>
@@ -31,74 +30,73 @@
                             aria-describedby="button-addon2"
                             name="keyword"
                     />
-                    <button class="btn btn-outline-primary" type="submit" id="button-addon2"
+                    <button class="btn btn-outline-primary text-black-50" type="submit" id="button-addon2"
                             data-mdb-ripple-color="dark">
                         Search
                     </button>
                 </div>
-            </form></div>
-
+            </form>
+        </div>
 
 
     </div>
     <div class="row">
-        <div class="col">
-            <table class="table table-striped">
-                <tr>
-                    <th>No.</th>
-                    <th>Name</th>
-                    <th>Area</th>
-                    <th>Cost</th>
-                    <th>Max People</th>
-                    <th>Standard Room</th>
-                    <th>Description</th>
-                    <th>Pool Area</th>
-                    <th>Number Floors</th>
-                    <th>Facility Free</th>
-                    <th>Facility Type</th>
-                    <th>Rent Type</th>
-                    <th colspan="3">Action</th>
+        <table class="table table-striped">
+            <tr class="bg-primary text-light">
+                <th>No.</th>
+                <th>Name</th>
+                <th>Area</th>
+                <th>Cost</th>
+                <th>Max People</th>
+                <th>Standard Room</th>
+                <th>Description</th>
+                <th>Pool Area</th>
+                <th>Number Floors</th>
+                <th>Facility Free</th>
+                <th>Facility Type</th>
+                <th>Rent Type</th>
+                <th colspan="4">Action</th>
 
-                </tr>
-                <tr th:each="facilitys,loop : ${facility}">
+            </tr>
+            <tr th:each="facilitys,loop : ${facility}">
 
-                    <th scope="row" th:text="${loop.count}"></th>
+                <th scope="row" th:text="${loop.count}"></th>
 
-                    <td th:text="${facilitys.name}"></td>
-                    <td th:text="${facilitys.area}"></td>
-                    <td th:text="${facilitys.cost}"></td>
-                    <td th:text="${facilitys.maxPeople}"></td>
-                    <td th:text="${facilitys.standardRoom}"></td>
-                    <td th:text="${facilitys.description}"></td>
-                    <td th:text="${facilitys.poolArea}"></td>
-                    <td th:text="${facilitys.numberFloors}"></td>
-                    <td th:text="${facilitys.facilityFree}"></td>
-                    <td th:text="${facilitys.facilityType.name}"></td>
-                    <td th:text="${facilitys.rentType.name}"></td>
-
-
-                    <td>
-                        <button type="button" class="btn btn-primary "><a
-                                th:href="@{/showUpdate/facility(id=${facilitys.id})}"
-                                class="text-white "
-                                style=" text-decoration: none">edit</a></button>
-                    </td>
+                <td th:text="${facilitys.name}"></td>
+                <td th:text="${facilitys.area}"></td>
+                <td th:text="${facilitys.cost}"></td>
+                <td th:text="${facilitys.maxPeople}"></td>
+                <td th:text="${facilitys.standardRoom}"></td>
+                <td th:text="${facilitys.description}"></td>
+                <td th:text="${facilitys.poolArea}"></td>
+                <td th:text="${facilitys.numberFloors}"></td>
+                <td th:text="${facilitys.facilityFree}"></td>
+                <td th:text="${facilitys.facilityType.name}"></td>
+                <td th:text="${facilitys.rentType.name}"></td>
 
 
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
+                <td>
+                    <button type="button" class="btn btn-primary "><a
+                            th:href="@{/showUpdate/facility(id=${facilitys.id})}"
+                            class="text-white "
+                            style=" text-decoration: none">edit</a></button>
+                </td>
 
-                                th:attr="onclick=|showModalDelete('${facilitys.id}','${facilitys.name}')|">
 
-                            Delete
-                        </button>
-                    </td>
-                </tr>
-            </table>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
 
-        </div>
+                            th:attr="onclick=|showModalDelete('${facilitys.id}','${facilitys.name}')|">
+
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </table>
     </div>
+
+
     <div class="row">
         <div class="col">
             <ul class="pagination justify-content-end">
@@ -127,9 +125,7 @@
             </ul>
         </div>
     </div>
-
 </div>
-
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

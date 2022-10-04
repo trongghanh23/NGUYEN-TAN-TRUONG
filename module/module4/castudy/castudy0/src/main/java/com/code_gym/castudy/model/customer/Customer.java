@@ -18,12 +18,12 @@ public class Customer {
     private Integer phoneNumber;
     private String email;
     private String address;
-    @JoinColumn(name = "customerType",referencedColumnName = "id")
+    @JoinColumn(name = "customerType", referencedColumnName = "id")
     @ManyToOne
     private CustomerType customType;
 
     @OneToMany(mappedBy = "customer")
-    private List<Contract>contractList;
+    private List<Contract> contractList;
 
     public Customer() {
     }

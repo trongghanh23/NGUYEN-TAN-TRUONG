@@ -11,31 +11,32 @@
         </style>
     </head>
 <body>
-<div class="row" th:replace="~{content::header}"></div>
+<div class="row"><div class="container-fluid" th:replace="~{content::header}"></div>
 
-<nav th:replace="~{navbar-fragment::navbar}"></nav>
+    <nav th:replace="~{navbar-fragment::navbar}"></nav></div>
 
-<div class="container">
+
+<div class="container-fluid">
     <div class="row main mt-2 ">
-        <legend class="text-center">Danh sách hợp đồng</legend>
+        <legend class="text-center">Contract List</legend>
         <legend>
             <button onclick="addContract('${id}')
                 " type="button" class="btn btn-primary"
                     data-bs-toggle="modal" data-bs-target="#addContract">
-                Thêm mới hợp đồng
+                Add Contract
             </button>
         </legend>
 
         <table class="table table-striped">
-            <tr>
-                <th>STT</th>
-                <th>Dịch vụ</th>
-                <th>Khách hàng</th>
-                <th>Ngày bắt đầu</th>
-                <th>Ngày kết thúc</th>
-                <th>Tiền đặt cọc</th>
-                <th>Tổng tiền</th>
-                <th>Các dịch vụ đi kèm</th>
+            <tr class="bg-primary text-light">
+                <th>No.</th>
+                <th>Service</th>
+                <th>Customer</th>
+                <th>Start Date</th>
+                <th>Begin Date</th>
+                <th>Deposit</th>
+                <th>Total</th>
+                <th colspan="8">Service Detail</th>
 
             </tr>
             <tr>
@@ -56,7 +57,7 @@
                     <button onclick="showGoContract('${id}')
                         " type="button" class="btn btn-primary"
                             data-bs-toggle="modal" data-bs-target="#show">
-                        Danh sách dịch vụ đi kèm
+                        List Facility Detail
 
                     </button>
 
@@ -66,6 +67,7 @@
 
     </div>
 </div>
+
 <div class="modal fade" id="addContract" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

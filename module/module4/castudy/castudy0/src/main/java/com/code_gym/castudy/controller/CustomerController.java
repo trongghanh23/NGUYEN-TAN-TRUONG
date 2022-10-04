@@ -21,7 +21,7 @@ public class CustomerController {
     private ICustomerTypeService iCustomerTypeService;
 
     @GetMapping("/customer")
-    public String customerList(Model model, @PageableDefault(size = 3) Pageable pageable,
+    public String customerList(Model model, @PageableDefault(size = 5) Pageable pageable,
                                @RequestParam Optional<String> keyword) {
         String keyWordValue = keyword.orElse("");
         model.addAttribute("customerList", this.iCustomerService.findAllSearchAndPaging(keyWordValue, pageable));
@@ -38,12 +38,11 @@ public class CustomerController {
 
     @PostMapping("/create/save")
 
-    public String create(@ModelAttribute Customer customer,RedirectAttributes redirectAttributes, Model model) {
+    public String create(@ModelAttribute Customer customer,RedirectAttributes redirectAttributes) {
 
-           this.iCustomerService.save(customer);
+          iCustomerService.save(customer);
 
-
-        redirectAttributes.addFlashAttribute("message", " add new successfully! ");
+        redirectAttributes.addFlashAttribute("message", " Add new successfully! ");
         return "redirect:/customer";
     }
 

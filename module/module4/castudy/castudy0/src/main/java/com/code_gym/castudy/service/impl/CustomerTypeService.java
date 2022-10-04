@@ -18,8 +18,4 @@ public class CustomerTypeService implements ICustomerTypeService {
         return iCustomerTypeRepository.findAll();
     }
 
-    @Override
-    public void save(CustomerType customerType) {
-        iCustomerTypeRepository.save(customerType);
-    }
 }

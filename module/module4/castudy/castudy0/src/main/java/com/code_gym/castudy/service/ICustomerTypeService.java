@@ -6,7 +6,8 @@ import com.code_gym.castudy.model.customer.CustomerType;
 import java.util.List;
 
 public interface ICustomerTypeService {
+
     List<CustomerType> findAll();
 
-    void save(CustomerType customerType);
+
 }

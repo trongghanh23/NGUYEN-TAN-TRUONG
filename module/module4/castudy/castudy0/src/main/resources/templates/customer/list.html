@@ -11,15 +11,16 @@
         </style>
     </head>
 <body>
-<div class="row" th:replace="~{content::header}"></div>
+<div class="container-fluid" th:replace="~{content::header}"></div>
 
 <nav th:replace="~{navbar-fragment::navbar}"></nav>
 <div class="text-center" style="margin-top: 10px"><h2>Customer List</h2></div>
+
 <div class="container-fluid text-center ">
-    <div class="row text-success" th:text="${message}"></div>
+    <div class="row text-success " style="margin-left: 150px" th:text="${message}"></div>
 
     <div class="row" style="margin-top: 10px">
-        <div class="col-lg-4">
+        <div class="col-lg-2">
 
             <button type="button" class="btn btn-primary "><a th:href="@{/customer/showCreate}"
                                                               class="text-white "
@@ -27,8 +28,8 @@
             </button>
 
         </div>
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
+        <div class="col-lg-7"></div>
+        <div class="col-lg-3">
             <form action="/customer">
                 <div class="input-group mb-3">
                     <input
@@ -48,63 +49,63 @@
 
     </div>
 
+    <div class="container-fluid">
+        <div class="row">
+            <table class="table table-striped">
 
-    <div class="row">
+                <tr class="bg-primary text-light">
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Birthday</th>
+                    <th>Gender</th>
+                    <th>ID Card</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Type</th>
+                    <th colspan="4">Action</th>
 
-        <table class="table table-striped">
+                </tr>
 
-            <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Birthday</th>
-                <th>Gender</th>
-                <th>ID Card</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Type</th>
-                <th colspan="4">Action</th>
+                <tr th:each="customer,loop : ${customerList}">
 
-            </tr>
+                    <th scope="row" th:text="${loop.count}"></th>
 
-            <tr th:each="customer,loop : ${customerList}">
-
-                <th scope="row" th:text="${loop.count}"></th>
-
-                <td th:text="${customer.name}"></td>
-                <td th:text="${customer.dateOfBirth}"></td>
-                <td th:if="${customer.gender}">Male</td>
-                <td th:unless="${customer.gender}">Female</td>
-                <td th:text="${customer.idCard}"></td>
-                <td th:text="${customer.phoneNumber}"></td>
-                <td th:text="${customer.email}"></td>
-                <td th:text="${customer.address}"></td>
-                <td th:text="${customer.customType.name}"></td>
-
-
-                <td>
-                    <button type="button" class="btn btn-primary "><a
-                            th:href="@{/customer/showUpdate(id=${customer.id})}"
-                            class="text-white "
-                            style=" text-decoration: none">edit</a>
-                    </button>
-                </td>
+                    <td th:text="${customer.name}"></td>
+                    <td th:text="${customer.dateOfBirth}"></td>
+                    <td th:if="${customer.gender}">Male</td>
+                    <td th:unless="${customer.gender}">Female</td>
+                    <td th:text="${customer.idCard}"></td>
+                    <td th:text="${customer.phoneNumber}"></td>
+                    <td th:text="${customer.email}"></td>
+                    <td th:text="${customer.address}"></td>
+                    <td th:text="${customer.customType.name}"></td>
 
 
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
+                    <td>
+                        <button type="button" class="btn btn-primary "><a
+                                th:href="@{/customer/showUpdate(id=${customer.id})}"
+                                class="text-white "
+                                style=" text-decoration: none">Edit</a>
+                        </button>
+                    </td>
 
-                            th:attr="onclick=|showModalDelete('${customer.id}','${customer.name}')|">
 
-                        Delete
-                    </button>
-                </td>
-            </tr>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
 
-        </table>
+                                th:attr="onclick=|showModalDelete('${customer.id}','${customer.name}')|">
+
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
     </div>
-</div>
+
 
 <div class="row">
 
@@ -135,7 +136,7 @@
 
 </div>
 
-</div>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form action="/delete" method="post">
@@ -156,7 +157,6 @@
             </div>
         </form>
     </div>
-</div>
 
 <script>
     function showModalDelete(deleteModalValue, showModal) {
