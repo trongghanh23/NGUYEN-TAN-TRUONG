@@ -3,10 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
+    <head th:replace="~{content::css}">
+        <style>
+            body {
+                overflow-x:hidden;
+            }
+        </style>
+    </head>
 <body>
-<nav th:replace="/navbar-fragment::nav"></nav>
-<div class="next"></div>
+<div class="row" th:replace="~{content::header}"></div>
 
+<nav th:replace="~{navbar-fragment::navbar}"></nav>
+<div class="text-center" style="margin-top: 10px"><h2>Employee List</h2></div>
+
+<div class="container-fluid text-center ">
+    <div class="row text-success" th:text="${message}"></div>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col-lg-4">
+
+            <button type="button" class="btn btn-primary ">Add new employee
+            </button>
+
+        </div>
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <form action="/employee">
+                <div class="input-group mb-3">
+                    <input
+                            type="text"
+                            class="form-control"
+                            aria-describedby="button-addon2"
+                            name="keyword"
+                    />
+                    <button class="btn btn-primary text-white" type="submit" id="button-addon2"
+                            data-mdb-ripple-color="dark">
+                        Search
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+        <table class="table table-striped">
+
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Birthday</th>
+                <th>ID Card</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Education Degree</th>
+                <th>position</th>
+                <th>division</th>
+                <th colspan="4">Action</th>
+
+            </tr>
+
+            <tr >
+                <td>1</td>
+                <td>Nguyễn thị hào</td>
+                <td>12-3-1946</td>
+                <td>090004555</td>
+                <td>0900045990</td>
+                <td>hao@gmail.com</td>
+                <td>Đại học</td>
+                <td>Lễ tân</td>
+                <td>Hành chính</td>
+
+
+
+                <td>
+                    <button type="button" class="btn btn-primary ">Edit
+                    </button>
+                </td>
+
+
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+
+                        Delete
+                    </button>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="/delete" method="post">
+            <div class="modal-content" style="background-color: darksalmon">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Notification </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body container-fluid">
+                    You want to delete Customer: <span id="delete_modal"></span>
+                    <input type="hidden" id="sendId" name="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showModalDelete(deleteModalValue, showModal) {
+        document.getElementById("delete_modal").innerText = showModal;
+        document.getElementById("sendId").value = deleteModalValue;
+
+    }
+</script>
 </body>
 </html>

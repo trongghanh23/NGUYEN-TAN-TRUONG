@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.3'
+    id 'org.springframework.boot' version '2.6.11'
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'java'
 }
@@ -27,6 +27,14 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
+    compileJava.options.encoding = 'UTF-8'
+    tasks.withType(JavaCompile) {    options.encoding = 'UTF-8'}
 }
 
 tasks.named('test') {

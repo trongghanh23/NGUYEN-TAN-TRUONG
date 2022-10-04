@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head th:replace="~{content::css}">
+        <style>
+            body {
+                overflow-x:hidden;
+            }
+        </style>
+    </head>
+    <script src="/js/jquery-3.6.1.min.js"></script>
+<body>
+<div class="row" th:replace="~{content::header}"></div>
+
+<nav th:replace="~{navbar-fragment::navbar}"></nav>
+<div class="text-center" style="margin-top: 10px"><h2>Facility Create</h2></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6">
+            <form th:action="@{/create/save/facility}" th:object="${facilityDto}"
+                  method="post">
+                <div class="mb-3">
+                    <input type="hidden" th:field="*{id}" class="form-control" id="ids" aria-describedby="idUser">
+
+                </div>
+                <label for="exampleInputEmail1" class="form-label"> Choose Facility</label>
+                <div class="mb-3" >
+                    <select th:field="*{facilityType.id}" id="facility_type"  >
+                        <option th:each="facilityType : ${showFacilityType}"
+                                th:value="${facilityType.id}"
+                                th:text="${facilityType.name}">
+                        </option>
+
+                    </select>
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label"> Name</label>
+                    <input type="text" th:field="*{name}" class="form-control" id="lastName" aria-describedby="lastName">
+                    <div class="mb-4 text-danger" th:errors="*{name}"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Area</label>
+                    <input type="text" th:field="*{area}" class="form-control" id="firstName" aria-describedby="firstName">
+                    <div class="mb-4 text-danger" th:errors="*{area}"></div>
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Cost</label>
+                    <input type="text" th:field="*{cost}" class="form-control" id="cost" aria-describedby="cost">
+                    <div class="mb-4 text-danger" th:errors="*{cost}"></div>
+
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Max People</label>
+                    <input type="text" th:field="*{maxPeople}" class="form-control" id="age" aria-describedby="age">
+                    <div class="mb-4 text-danger" th:errors="*{maxPeople}"></div>
+
+
+                </div>
+                <div class="mb-3" id="standard_room">
+                    <label for="exampleInputEmail1" class="form-label">Standard Room</label>
+                    <input type="text" th:field="*{standardRoom}" class="form-control" id="standardRoom" aria-describedby="standardRoom">
+                    <div class="mb-4 text-danger" th:errors="*{standardRoom}"></div>
+
+
+                </div>
+
+                <div class="mb-3" id="description">
+                    <label for="exampleInputEmail1" class="form-label">Description </label>
+                    <input type="text" th:field="*{description}" class="form-control" id="descriptions" aria-describedby="description">
+                    <div class="mb-4 text-danger" th:errors="*{description}"></div>
+
+
+                </div>
+                <div class="mb-3" id="pool_area">
+                    <label for="exampleInputEmail1" class="form-label">Pool Area</label>
+                    <input type="text" th:field="*{poolArea}" class="form-control" id="poolArea" aria-describedby="poolArea">
+                    <div class="mb-4 text-danger" th:errors="*{poolArea}"></div>
+
+
+                </div>
+
+
+                <div class="mb-3" id="number_of_floors">
+                    <label for="exampleInputEmail1" class="form-label">Number Floors</label>
+                    <input type="text" th:field="*{numberFloors}" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp">
+                    <div class="mb-4 text-danger" th:errors="*{numberFloors}"></div>
+
+                </div>
+                <div class="mb-3" id="facility_free">
+                    <label for="exampleInputEmail1" class="form-label">Facility Free</label>
+                    <input type="text" th:field="*{facilityFree}" class="form-control" id="facilityFree" aria-describedby="facilityFree">
+
+                </div>
+                <div class="mb-3">
+                    <select th:field="*{rentType.id}">
+                        <option th:each="rent : ${showRentType}"
+                                th:value="${rent.id}"
+                                th:text="${rent.name}">
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="row" >
+                    <div class="col-9">
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                    <div class="col-3">
+                        <a class="text-white btn btn-primary" href="/facility" style=" text-decoration: none">Back </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+<script src="/js/jquery-3.6.1.min.js"></script>
+<script>
+
+    selectType()
+
+    $("#facility_type").change(function () {
+        selectType()
+    })
+
+    function selectType() {
+        let type = document.getElementById("facility_type").value;
+        switch (type) {
+            case "1"  :
+                $("#standard_room").show()
+                $("#description").show()
+                $("#pool_area").show()
+                $("#number_of_floors").show()
+                $("#facility_free").hide()
+                break;
+            case "2":
+                $("#standard_room").show()
+                $("#description").show()
+                $("#pool_area").hide()
+                $("#number_of_floors").show()
+                $("#facility_free").hide()
+                break;
+            case "3":
+                $("#standard_room").hide()
+                $("#description").hide()
+                $("#pool_area").hide()
+                $("#number_of_floors").hide()
+                $("#facility_free").show()
+                break;
+        }
+    }
+</script>
+
+</body>
+</html>

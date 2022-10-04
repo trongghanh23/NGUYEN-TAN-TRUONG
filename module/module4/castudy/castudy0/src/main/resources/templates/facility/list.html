@@ -3,11 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <head th:replace="~{admin-fragrment::css}">
-
+    <head th:replace="~{content::css}">
+        <style>
+            body {
+                overflow-x:hidden;
+            }
+        </style>
     </head>
 <body>
-<nav th:replace="/navbar-fragment::nav"></nav>
-<div class="next"></div>
+<div class="row" th:replace="~{content::header}"></div>
+
+<nav th:replace="~{navbar-fragment::navbar}"></nav>
+<div class="text-center" style="margin-top: 10px"><h2>Facility List</h2></div>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <form action="/facility">
+                <div class="input-group mb-3">
+                    <input
+                            type="text"
+                            class="form-control"
+                            aria-describedby="button-addon2"
+                            name="keyword"
+                    />
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon2"
+                            data-mdb-ripple-color="dark">
+                        Search
+                    </button>
+                </div>
+            </form></div>
+
+
+
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Area</th>
+                    <th>Cost</th>
+                    <th>Max People</th>
+                    <th>Standard Room</th>
+                    <th>Description</th>
+                    <th>Pool Area</th>
+                    <th>Number Floors</th>
+                    <th>Facility Free</th>
+                    <th>Facility Type</th>
+                    <th>Rent Type</th>
+                    <th colspan="3">Action</th>
+
+                </tr>
+                <tr th:each="facilitys,loop : ${facility}">
+
+                    <th scope="row" th:text="${loop.count}"></th>
+
+                    <td th:text="${facilitys.name}"></td>
+                    <td th:text="${facilitys.area}"></td>
+                    <td th:text="${facilitys.cost}"></td>
+                    <td th:text="${facilitys.maxPeople}"></td>
+                    <td th:text="${facilitys.standardRoom}"></td>
+                    <td th:text="${facilitys.description}"></td>
+                    <td th:text="${facilitys.poolArea}"></td>
+                    <td th:text="${facilitys.numberFloors}"></td>
+                    <td th:text="${facilitys.facilityFree}"></td>
+                    <td th:text="${facilitys.facilityType.name}"></td>
+                    <td th:text="${facilitys.rentType.name}"></td>
+
+
+                    <td>
+                        <button type="button" class="btn btn-primary "><a
+                                th:href="@{/showUpdate/facility(id=${facilitys.id})}"
+                                class="text-white "
+                                style=" text-decoration: none">edit</a></button>
+                    </td>
+
+
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+
+                                th:attr="onclick=|showModalDelete('${facilitys.id}','${facilitys.name}')|">
+
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <a class="page-link"
+                       th:href="@{/facility(page=${facility.number - 1}, keyword = ${keyWordValue})}"
+                       th:if="${facility.hasPrevious()}">
+                        Previous
+                    </a>
+                </li>
+                <li class="page-item active" aria-current="page">
+                                        <span class="page-link">
+                                            <th:block th:text="${facility.number + 1}"></th:block>
+                                            /
+                                            <th:block th:text="${facility.totalPages}"></th:block>
+                                        </span>
+
+                </li>
+                <li class="page-item">
+                    <a class="page-link"
+                       th:href="@{/facility(page=${facility.number + 1}, keyword = ${keyWordValue})}"
+                       th:if="${facility.hasNext()}">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="/delete/facility" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body container-fluid">
+                    You want to delete Facility: <span id="delete_modal"></span>
+                    <input type="hidden" id="sendId" name="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<script>
+    function showModalDelete(deleteModalValue, showModal) {
+        document.getElementById("delete_modal").innerText = showModal;
+        document.getElementById("sendId").value = deleteModalValue;
+
+    }
+</script>
 </body>
 </html>

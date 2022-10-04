@@ -16,6 +16,8 @@ public class Contract {
     private String starDate;
     private String endDate;
     private Double deposit;
+    private Double total;
+
     @JoinColumn(name = "customer",referencedColumnName = "id")
     @ManyToOne
     private Customer customer;

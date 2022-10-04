@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Customer Create</title>
-    <th:block th:replace="~{fragment::css}"></th:block>
-</head>
-<body>
-<nav th:replace="~{fragment::header}"></nav>
+    <title>Title</title>
+    <head th:replace="~{content::css}">
 
-<div class="next" th:replace="~{fragment::color}"></div>
-<div class="container ">
-    <div class="row text-center"><h3>Customer Create </h3></div>
+    </head>
+<body>
+<div class="row" th:replace="~{content::header}"></div>
+
+<nav th:replace="~{navbar-fragment::navbar}"></nav>
+<div class="text-center" style="margin-top: 10px"><h2>Customer Create</h2></div>
+<div class="container">
 
     <div class="row">
         <div class="col-3">
@@ -22,24 +22,26 @@
             <form th:action="@{/create/save}" th:object="${customers}"
                   method="post">
                 <div class="mb-3">
-                    <input type="hidden" th:field="*{customerId}" class="form-control" id="ida" aria-describedby="User">
+                    <input type="hidden" th:field="*{id}" class="form-control" id="ida" aria-describedby="User">
 
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label"> Name</label>
-                    <input type="text" th:field="*{name}" class="form-control" id="lastName" aria-describedby="lastName">
-                    <div class="mb-4 text-danger" th:errors="*{name}"></div>
+                    <input type="text" th:field="*{name}" class="form-control" id="lastName"
+                           aria-describedby="lastName">
+                    <!--                    <div class="mb-4 text-danger" th:errors="*{name}"></div>-->
 
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Birthday</label>
-                    <input type="date" th:field="*{birthday}" class="form-control" id="firstName" aria-describedby="firstName">
-                    <div class="mb-4 text-danger" th:errors="*{birthday}"></div>
+                    <input type="date" th:field="*{dateOfBirth}" class="form-control" id="firstName"
+                           aria-describedby="firstName">
+                    <!--                    <div class="mb-4 text-danger" th:errors="*{birthday}"></div>-->
 
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Gender </label>
-                    <select th:field="*{gender}" class="form-control" id="gender" aria-describedby="age" >
+                    <select th:field="*{gender}" class="form-control" id="gender" aria-describedby="age">
                         <option value="">Female</option>
                         <option value="">Male</option>
                     </select>
@@ -50,11 +52,12 @@
                     <label for="exampleInputEmail1" class="form-label">IdCard</label>
                     <input type="text" th:field="*{idCard}" class="form-control" id="age" aria-describedby="age">
 
-                    <div class="mb-4 text-danger" th:errors="*{idCard}"></div>
+                    <!--                    <div class="mb-4 text-danger" th:errors="*{idCard}"></div>-->
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Phone</label>
-                    <input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber" aria-describedby="age">
+                    <input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber"
+                           aria-describedby="age">
 
                     <div class="mb-4 text-danger" th:errors="*{phoneNumber}"></div>
                 </div>
@@ -63,7 +66,7 @@
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input type="text" th:field="*{email}" class="form-control" id="exampleInputEmail1"
                            aria-describedby="emailHelp">
-                    <div class="mb-4 text-danger" th:errors="*{email}"></div>
+                    <!--                    <div class="mb-4 text-danger" th:errors="*{email}"></div>-->
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Address</label>
@@ -72,9 +75,9 @@
 
                 </div>
                 <div class="mb-3">
-                    <select th:field="*{customerType.code}">
+                    <select th:field="*{customType.id}">
                         <option th:each="customerType : ${showCustomerType}"
-                                th:value="${customerType.code}"
+                                th:value="${customerType.id}"
                                 th:text="${customerType.name}">
 
                         </option>
@@ -85,7 +88,7 @@
                 </div>
 
 
-                <div class="row" >
+                <div class="row">
                     <div class="col-9">
                         <button type="reset" class="btn btn-primary">Reset</button>
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -99,7 +102,6 @@
         <div class="col-3"></div>
     </div>
 </div>
-
 </body>
-<th:block th:replace="~{fragment::js}"></th:block>
+
 </html>

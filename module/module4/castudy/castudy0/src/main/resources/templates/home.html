@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{admin-fragrment::css}">
+<head >
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <script src="/js/bootstrap.js"></script>
-
+    <style>
+        body{
+            background-image: url("https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-051.jpg");
+        }
+    </style>
 </head>
 <body>
-<nav th:replace="/navbar-fragment::nav"></nav>
-<div class="next"></div>
+<nav th:replace="~{navbar-fragment::navbar}"></nav>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3">
-            <div class="row bg-light ">
-                <img src="https://furamavietnam.com/wp-content/uploads/2019/02/Ariyana-Tourism-Complex-02-2.png">
-            </div>
+
             <div class="row " style="margin-top: 20px">
                 <div class="col-lg-2"><img
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/2048px-Facebook_f_logo_%282019%29.svg.png"

@@ -8,10 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
@@ -58,7 +55,7 @@ public class CustomerController {
     }
 
 
-    @GetMapping("/showUpdate")
+    @GetMapping("customer/showUpdate")
     public String showEditCustomerForm(@RequestParam Integer id, Model model) {
 
         model.addAttribute("customer",this.iCustomerService.getId(id));
@@ -76,5 +73,9 @@ public class CustomerController {
                 "successfully update");
 
         return "redirect:/customer";
+    }
+    @ExceptionHandler
+    public String error(Exception e){
+        return "error";
     }
 }
