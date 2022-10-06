@@ -10,7 +10,7 @@ public class CustomerType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @OneToMany(mappedBy = "customType")
+    @OneToMany(mappedBy = "customerType")
     private List<Customer> customerList;
 
     public CustomerType() {

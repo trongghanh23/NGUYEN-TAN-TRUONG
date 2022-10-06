@@ -19,7 +19,7 @@
         </div>
         <div class="col-6">
 
-            <form th:action="@{/create/save}" th:object="${customers}"
+            <form th:action="@{/create/save}" th:object="${customerDto}"
                   method="post">
                 <div class="mb-3">
                     <input type="hidden" th:field="*{id}" class="form-control" id="ida" aria-describedby="User">
@@ -29,19 +29,19 @@
                     <label for="exampleInputEmail1" class="form-label"> Name</label>
                     <input type="text" th:field="*{name}" class="form-control" id="lastName"
                            aria-describedby="lastName">
-                    <!--                    <div class="mb-4 text-danger" th:errors="*{name}"></div>-->
+                    <div class="mb-4 text-danger" th:errors="*{name}"></div>
 
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Birthday</label>
                     <input type="date" th:field="*{dateOfBirth}" class="form-control" id="firstName"
                            aria-describedby="firstName">
-                    <!--                    <div class="mb-4 text-danger" th:errors="*{birthday}"></div>-->
+                    <div class="mb-4 text-danger" th:errors="*{dateOfBirth}"></div>
 
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Gender </label>
-                    <select th:field="*{gender}" class="form-control" id="gender" aria-describedby="age">
+                    <select th:field="*{gender}" class="form-select" id="gender" aria-describedby="age">
                         <option value="">Female</option>
                         <option value="">Male</option>
                     </select>
@@ -52,12 +52,11 @@
                     <label for="exampleInputEmail1" class="form-label">IdCard</label>
                     <input type="text" th:field="*{idCard}" class="form-control" id="age" aria-describedby="age">
 
-                    <!--                    <div class="mb-4 text-danger" th:errors="*{idCard}"></div>-->
+                    <div class="mb-4 text-danger" th:errors="*{idCard}"></div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Phone</label>
-                    <input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber"
-                           aria-describedby="age">
+                    <input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber">
 
                     <div class="mb-4 text-danger" th:errors="*{phoneNumber}"></div>
                 </div>
@@ -66,7 +65,7 @@
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input type="text" th:field="*{email}" class="form-control" id="exampleInputEmail1"
                            aria-describedby="emailHelp">
-                    <!--                    <div class="mb-4 text-danger" th:errors="*{email}"></div>-->
+                    <div class="mb-4 text-danger" th:errors="*{email}"></div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Address</label>
@@ -74,19 +73,18 @@
                     <div class="mb-4 text-danger" th:errors="*{address}"></div>
 
                 </div>
+
                 <div class="mb-3">
-                    <select th:field="*{customType.id}"  class="form-select">
-                        <option th:each="customerType : ${showCustomerType}"
-                                th:value="${customerType.id}"
-                                th:text="${customerType.name}">
+                <select th:field="*{customerType}"  class="form-select">
+                    <option th:each="customerType : ${showCustomerType}"
+                            th:value="${customerType.id}"
+                            th:text="${customerType.name}">
 
-                        </option>
+                    </option>
 
-                    </select>
+                </select>
 
-
-                </div>
-
+            </div>
 
                 <div class="row">
                     <div class="col-9">
@@ -98,6 +96,7 @@
                     </div>
                 </div>
             </form>
+
         </div>
         <div class="col-3"></div>
     </div>

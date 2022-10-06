@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head th:replace="~{content::css}">
+        <style>
+            body {
+                overflow-x:hidden;
+            }
+        </style>
+    </head>
+<body>
+<div class="container-fluid" th:replace="~{content::header}"></div>
+
+<nav th:replace="~{navbar-fragment::navbar}"></nav>
+<div class="container-fluid  ">
+<div class="text-center" style="margin-top: 10px"><h2>Contract List</h2></div>
+
+    <div class="row text-success " style="margin-left: 150px" th:text="${message}"></div>
+
+    <div class="container-fluid">
+        <button class="btn btn-primary btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                data-bs-target="#addContract">
+            <span class="fa-solid fa-person-circle-plus text-light h5 my-auto me-1"></span>
+            <span class="text-light"> Add Contract</span>
+        </button>
+    </div>
+
+
+    <div class="container-fluid mt-5">
+    <div class="row">
+        <table class="table table-striped">
+            <tr class="bg-primary text-light">
+                <th>No.</th>
+                <th>Service</th>
+                <th>Customer</th>
+                <th>Start Date</th>
+                <th>Begin Date</th>
+                <th>Deposit</th>
+                <th>Total</th>
+                <th colspan="8">Service Detail</th>
+
+            </tr>
+
+            <tr th:each="contract,loop : ${contractList}">
+
+                <th scope="row" th:text="${loop.count}"></th>
+
+                <td th:text="${contract.getFacilityName()}"></td>
+                <td th:text="${contract.getCustomerName()}"></td>
+                <td th:text="${contract.getStartDate()}"></td>
+                <td th:text="${contract.getEndDate()}"></td>
+                <td th:text="${contract.getDeposit()}"></td>
+                <td th:text="${contract.getTotal()}"></td>
+
+                <td>
+                    <button onclick="addGoContract()
+                        " type="button" class="btn btn-primary"
+                            data-bs-toggle="modal" >
+                        +
+                    </button>
+                    <button onclick="showGoContract()
+                        " type="button" class="btn btn-primary"
+                            data-bs-toggle="modal">
+                        List Facility Detail
+
+                    </button>
+
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div class="row">
+
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link"
+               th:href="@{/contract(page=${contractList.number - 1})}"
+               th:if="${contractList.hasPrevious()}">
+                Previous
+            </a>
+        </li>
+        <li class="page-item active" aria-current="page">
+                                            <span class="page-link">
+                                                <th:block th:text="${contractList.number + 1}"></th:block>
+                                                /
+                                                <th:block th:text="${contractList.totalPages}"></th:block>
+                                            </span>
+
+        </li>
+        <li class="page-item">
+            <a class="page-link"
+               th:href="@{/contract(page=${contractList.number + 1})}"
+               th:if="${contractList.hasNext()}">
+                Next
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+    <div class="modal fade" id="addContract" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="border border-2 border-success p-3 rounded formCSS" th:action="@{/contract/save}"
+                      th:object="${contract}" method="POST">
+                    <div class="modal-header">
+                        <h3 class="modal-title fw-bold text-primary" id="exampleModalLabel3">Add Contract</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="h6" for="facility">Facility Name:</label>
+                                <div class="input-group">
+                                    <select id="facility" class="form-select" th:field="*{facility.id}">
+                                        <option th:each="item : ${facility}" th:value="${item.id}"
+                                                th:text="${item.name}"></option>
+                                    </select>
+                                    <!--                                <span class="input-group-text"><i class="fa-solid fa-file-signature"></i></span>-->
+                                </div>
+                            </div>
+
+                            <div class="mt-3 form-group">
+                                <label class="h6" for="employee">Employee Name:</label>
+                                <div class="input-group">
+                                    <select id="employee" class="form-select" th:field="*{employee.id}">
+                                        <option th:each="item : ${employees}" th:value="${item.id}"
+                                                th:text="${item.name}" >
+                                        </option>
+                                    </select>
+                                    <!--                                <span class="input-group-text"><i class="fa-solid fa-person-circle-question"></i></span>-->
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="h6" for="customer">Customer Name:</label>
+                                <div class="input-group">
+                                    <select id="customer" class="form-select" th:field="*{customer.id}">
+                                        <option th:each="item : ${customers}" th:value="${item.id}"
+                                                th:text="${item.name}"></option>
+                                    </select>
+                                    <!--                                <span class="input-group-text"><i class="fa-solid fa-person-circle-question"></i></span>-->
+                                </div>
+                            </div>
+
+                            <div class="mt-3 form-group">
+                                <label for="startDate" class="h6">Start Date:</label>
+                                <input type="date" id="startDate" class="form-control" th:field="*{starDate}" >
+                                <!--                                   required>-->
+                                <!--                                   pattern="^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[0-1])$"-->
+                                <!--                                   title="Vui lòng chọn ngày bắt đầu."/>-->
+                            </div>
+
+                            <div class="mt-3 form-group" id="endDateForm">
+                                <label for="endDate" class="h6">End Date:</label>
+                                <input type="date" id="endDate" class="form-control" th:field="*{endDate}" >
+                                <!--                                   required-->
+                                <!--                                   pattern="^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[0-1])$"-->
+                                <!--                                   title="Vui lòng chọn ngày kết thúc."/>-->
+                            </div>
+
+                            <div class="mt-3 form-group">
+                                <label for="deposit" class="h6">Deposit (VNĐ):</label>
+                                <div class="input-group">
+                                    <input type="number" id="deposit" class="form-control"
+                                           placeholder="Nhập tiền đặt cọc..." th:field="*{deposit}" >
+                                    <!--                                       required-->
+                                    <!--                                       pattern="^0|[1-9]\d*$"-->
+                                    <!--                                       title="Tiền đặt cọc (VNĐ) phải là số nguyên lớn hơn hoặc bằng 0."/>-->
+                                    <!--                                <span class="input-group-text"><i class="fa-solid fa-money-bill-wave"></i></span>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" value="delete">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

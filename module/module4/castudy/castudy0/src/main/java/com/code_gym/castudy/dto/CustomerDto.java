@@ -1,34 +1,38 @@
-package com.code_gym.castudy.model.customer;
+package com.code_gym.castudy.dto;
 
-import com.code_gym.castudy.model.Contract;
+import com.code_gym.castudy.common.CheckRegexCustomer;
+import com.code_gym.castudy.model.customer.CustomerType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.Email;
 
-@Entity
-@Table(name = "customer")
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CustomerDto implements Validator {
     private Integer id;
+
     private String name;
+
     private String dateOfBirth;
+
     private Boolean gender;
+
     private String idCard;
+
     private String phoneNumber;
+
+    @Email(message = "please enter abc@gmail")
     private String email;
+
     private String address;
-    @JoinColumn(name = "customerType", referencedColumnName = "id")
-    @ManyToOne
+
     private CustomerType customerType;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Contract> contractList;
 
-    public Customer() {
+    public CustomerDto() {
     }
 
-    public Customer(Integer id, String name, String dateOfBirth, Boolean gender, String idCard, String phoneNumber, String email, String address, CustomerType customerType, List<Contract> contractList) {
+
+    public CustomerDto(Integer id, String name, String dateOfBirth, Boolean gender, String idCard, String phoneNumber, String email, String address, CustomerType customerType) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -38,7 +42,6 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.customerType = customerType;
-        this.contractList = contractList;
     }
 
     public Integer getId() {
@@ -113,11 +116,19 @@ public class Customer {
         this.customerType = customerType;
     }
 
-    public List<Contract> getContractList() {
-        return contractList;
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public void setContractList(List<Contract> contractList) {
-        this.contractList = contractList;
+    @Override
+    public void validate(Object target, Errors errors) {
+        CustomerDto customerDto = (CustomerDto) target;
+        CheckRegexCustomer.checkName(customerDto, errors);
+        CheckRegexCustomer.checkIdCard(customerDto, errors);
+        CheckRegexCustomer.checkPhoneNumber(customerDto,errors);
+        CheckRegexCustomer.checkAge(customerDto,errors);
+
+
     }
 }

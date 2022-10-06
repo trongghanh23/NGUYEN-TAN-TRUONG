@@ -28,19 +28,19 @@
                     <label for="exampleInputEmail1" class="form-label"> Name</label>
                     <input type="text" th:field="*{name}" class="form-control" id="lastName"
                            aria-describedby="lastName">
-                    <!--                    <div class="mb-4 text-danger" th:errors="*{name}"></div>-->
+                    <div class="mb-4 text-danger" th:errors="*{name}"></div>
 
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Birthday</label>
                     <input type="date" th:field="*{dateOfBirth}" class="form-control" id="firstName"
                            aria-describedby="firstName">
-                    <!--                    <div class="mb-4 text-danger" th:errors="*{birthday}"></div>-->
+                    <div class="mb-4 text-danger" th:errors="*{dateOfBirth}"></div>
 
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Gender </label>
-                    <select th:field="*{gender}" class="form-control" id="gender" aria-describedby="age">
+                    <select th:field="*{gender}" class="form-select" id="gender" aria-describedby="age">
                         <option value="">Female</option>
                         <option value="">Male</option>
                     </select>
@@ -65,7 +65,7 @@
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input type="text" th:field="*{email}" class="form-control" id="exampleInputEmail1"
                            aria-describedby="emailHelp">
-                    <!--                    <div class="mb-4 text-danger" th:errors="*{email}"></div>-->
+                    <div class="mb-4 text-danger" th:errors="*{email}"></div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Address</label>
@@ -74,7 +74,7 @@
 
                 </div>
                 <div class="mb-3">
-                    <select th:field="*{customType.id}"  class="form-select">
+                    <select th:field="*{customerType}" class="form-select">
                         <option th:each="customerType : ${showCustomerType}"
                                 th:value="${customerType.id}"
                                 th:text="${customerType.name}">

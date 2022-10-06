@@ -48,6 +48,7 @@
         </div>
 
     </div>
+</div>
 
     <div class="container-fluid">
         <div class="row">
@@ -69,8 +70,7 @@
 
                 <tr th:each="customer,loop : ${customerList}">
 
-                    <th scope="row" th:text="${loop.count}"></th>
-
+                    <th scope="row" th:text="${customerList.number * customerList.size + loop.count}"></th>
                     <td th:text="${customer.name}"></td>
                     <td th:text="${customer.dateOfBirth}"></td>
                     <td th:if="${customer.gender}">Male</td>
@@ -79,7 +79,7 @@
                     <td th:text="${customer.phoneNumber}"></td>
                     <td th:text="${customer.email}"></td>
                     <td th:text="${customer.address}"></td>
-                    <td th:text="${customer.customType.name}"></td>
+                    <td th:text="${customer.customerType.name}"></td>
 
 
                     <td>
@@ -157,6 +157,7 @@
             </div>
         </form>
     </div>
+</div>
 
 <script>
     function showModalDelete(deleteModalValue, showModal) {

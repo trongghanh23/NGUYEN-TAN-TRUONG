@@ -1,13 +1,17 @@
 package com.code_gym.castudy.controller;
 
+import com.code_gym.castudy.dto.CustomerDto;
 import com.code_gym.castudy.model.customer.Customer;
 import com.code_gym.castudy.service.ICustomerService;
 import com.code_gym.castudy.service.ICustomerTypeService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,19 +35,28 @@ public class CustomerController {
 
     @GetMapping("/customer/showCreate")
     public String showCreate(Model model) {
-        model.addAttribute("customers", new Customer());
+        model.addAttribute("customerDto", new CustomerDto());
         model.addAttribute("showCustomerType", this.iCustomerTypeService.findAll());
         return ("/customer/create");
     }
 
     @PostMapping("/create/save")
 
-    public String create(@ModelAttribute Customer customer,RedirectAttributes redirectAttributes) {
+    public String create(@ModelAttribute("customerDto") CustomerDto customerDto, @Validated BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
+        new CustomerDto().validate(customerDto,bindingResult);
 
-          iCustomerService.save(customer);
+        if (bindingResult.hasErrors()){
+            model.addAttribute("showCustomerType", this.iCustomerTypeService.findAll());
+            return ("/customer/create");
+        }else {
+            Customer customer=new Customer();
+            BeanUtils.copyProperties(customerDto,customer);
+            this.iCustomerService.save(customer);
+            redirectAttributes.addFlashAttribute("message", " Add new successfully! ");
+            return "redirect:/customer";
 
-        redirectAttributes.addFlashAttribute("message", " Add new successfully! ");
-        return "redirect:/customer";
+        }
+
     }
 
     @PostMapping("/delete")
@@ -57,7 +70,7 @@ public class CustomerController {
     @GetMapping("customer/showUpdate")
     public String showEditCustomerForm(@RequestParam Integer id, Model model) {
 
-        model.addAttribute("customer",this.iCustomerService.getId(id));
+        model.addAttribute("customer", this.iCustomerService.getId(id));
         model.addAttribute("showCustomerType", this.iCustomerTypeService.findAll());
 
         return "/customer/edit";
@@ -65,16 +78,27 @@ public class CustomerController {
 
 
     @PostMapping("/update/customer")
-    public String updateSong(Customer customer, RedirectAttributes redirectAttributes) {
-        this.iCustomerService.save(customer);
+    public String updateSong(@ModelAttribute("customer") CustomerDto customerDto, @Validated BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
+        new CustomerDto().validate(customerDto, bindingResult);
 
-        redirectAttributes.addFlashAttribute("message",
-                "successfully update");
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("showCustomerType", this.iCustomerTypeService.findAll());
+            return "/customer/edit";
+        } else {
+            Customer customer = new Customer();
+            BeanUtils.copyProperties(customerDto, customer);
+            this.iCustomerService.save(customer);
+            redirectAttributes.addFlashAttribute("message", " Add new successfully! ");
+            return "redirect:/customer";
 
-        return "redirect:/customer";
+        }
+
+
     }
-    @ExceptionHandler
-    public String error(Exception e){
+
+
+        @ExceptionHandler
+    public String error(Exception e) {
         return "error";
     }
 }

@@ -1,14 +1,18 @@
 package com.code_gym.castudy.controller;
 
+import com.code_gym.castudy.dto.FacilityDto;
 import com.code_gym.castudy.model.facility.Facility;
 import com.code_gym.castudy.service.IFacilityService;
 import com.code_gym.castudy.service.IFacilityTypeService;
 import com.code_gym.castudy.service.IRentTypeService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +31,7 @@ public class FacilityController {
     private IRentTypeService iRentTypeService;
 
     @GetMapping("/facility")
-    public String customerList(Model model, @PageableDefault(size = 2) Pageable pageable,
+    public String customerList(Model model, @PageableDefault(size = 5) Pageable pageable,
                                @RequestParam Optional<String> keyword) {
         String keyWordValue = keyword.orElse("");
         model.addAttribute("facility", this.iFacilityService.findAllSearchAndPaging(keyWordValue, pageable));
@@ -37,18 +41,30 @@ public class FacilityController {
 
     @GetMapping("/facility/showCreate")
     public String showCreate(Model model) {
-        model.addAttribute("facilityDto", new Facility());
+        model.addAttribute("facilityDto", new FacilityDto());
         model.addAttribute("showFacilityType", this.iFacilityTypeService.findAll());
         model.addAttribute("showRentType", this.iRentTypeService.findAll());
         return ("/facility/create");
     }
 
     @PostMapping("/create/save/facility")
-    public String save(@ModelAttribute Facility facility, RedirectAttributes redirectAttributes) {
+    public String save(@ModelAttribute("facilityDto") @Validated FacilityDto facilityDto ,
+                       BindingResult bindingResult,Model model,
+                       RedirectAttributes redirectAttributes) {
+        new FacilityDto().validate(facilityDto, bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("showFacilityType", this.iFacilityTypeService.findAll());
+            model.addAttribute("showRentType", this.iRentTypeService.findAll());
+            return ("/facility/create");
 
-        this.iFacilityService.save(facility);
-        redirectAttributes.addFlashAttribute("message", " add new successfully! ");
-        return "redirect:/facility";
+        } else {
+
+            Facility facility = new Facility();
+            BeanUtils.copyProperties(facilityDto, facility);
+            this.iFacilityService.save(facility);
+            redirectAttributes.addFlashAttribute("message", " Add new successfully! ");
+            return "redirect:/facility";
+        }
     }
 
     @PostMapping("/delete/facility")
@@ -70,11 +86,24 @@ public class FacilityController {
     }
 
     @PostMapping("/update/facility")
-    public String updateFacility(Facility facility, RedirectAttributes redirectAttributes) {
+    public String updateFacility(@ModelAttribute("facilityUpdate") @Validated FacilityDto facilityDto ,
+    BindingResult bindingResult,Model model,
+    RedirectAttributes redirectAttributes) {
+        new FacilityDto().validate(facilityDto, bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("showFacilityType", this.iFacilityTypeService.findAll());
+            model.addAttribute("showRentType", this.iRentTypeService.findAll());
+            return "/facility/edit";
 
-        this.iFacilityService.save(facility);
-        redirectAttributes.addFlashAttribute("message", "update successfully!");
-        return "redirect:/facility";
+        } else {
+
+            Facility facility = new Facility();
+            BeanUtils.copyProperties(facilityDto, facility);
+            this.iFacilityService.save(facility);
+            redirectAttributes.addFlashAttribute("message", "Update successfully!");
+            return "redirect:/facility";
+        }
+
     }
 
 }

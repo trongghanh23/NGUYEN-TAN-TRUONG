@@ -1,40 +1,42 @@
-package com.code_gym.castudy.model.facility;
+package com.code_gym.castudy.dto;
 
-import com.code_gym.castudy.model.Contract;
+import com.code_gym.castudy.common.CheckRegexFacility;
+import com.code_gym.castudy.model.facility.FacilityType;
+import com.code_gym.castudy.model.facility.RentType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "facility")
-public class Facility {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class FacilityDto implements Validator {
     private Integer id;
     private String name;
+
     private String area;
+
     private String cost;
+
     private String maxPeople;
+
+    @NotBlank(message = "please enter")
     private String standardRoom;
+
+    @NotBlank(message = "please enter")
     private String description;
+
     private String poolArea;
+
     private String numberFloors;
+
     private String facilityFree;
-    @JoinColumn(name = "FacilityType",referencedColumnName = "id")
-    @ManyToOne
-    private FacilityType facilityType;
 
-    @JoinColumn(name = "rentType",referencedColumnName = "id")
-    @ManyToOne
     private RentType rentType;
+    private FacilityType  facilityType;
 
-    @OneToMany(mappedBy = "facility")
-    private List<Contract>contractList;
-
-    public Facility() {
+    public FacilityDto() {
     }
 
-    public Facility(Integer id, String name, String area, String cost, String maxPeople, String standardRoom, String description, String poolArea, String numberFloors, String facilityFree, FacilityType facilityType, RentType rentType, List<Contract> contractList) {
+    public FacilityDto(Integer id, String name, String area, String cost, String maxPeople, String standardRoom, String description, String poolArea, String numberFloors, String facilityFree, RentType rentType, FacilityType facilityType) {
         this.id = id;
         this.name = name;
         this.area = area;
@@ -45,9 +47,8 @@ public class Facility {
         this.poolArea = poolArea;
         this.numberFloors = numberFloors;
         this.facilityFree = facilityFree;
-        this.facilityType = facilityType;
         this.rentType = rentType;
-        this.contractList = contractList;
+        this.facilityType = facilityType;
     }
 
     public Integer getId() {
@@ -130,14 +131,6 @@ public class Facility {
         this.facilityFree = facilityFree;
     }
 
-    public FacilityType getFacilityType() {
-        return facilityType;
-    }
-
-    public void setFacilityType(FacilityType facilityType) {
-        this.facilityType = facilityType;
-    }
-
     public RentType getRentType() {
         return rentType;
     }
@@ -146,11 +139,28 @@ public class Facility {
         this.rentType = rentType;
     }
 
-    public List<Contract> getContractList() {
-        return contractList;
+    public FacilityType getFacilityType() {
+        return facilityType;
     }
 
-    public void setContractList(List<Contract> contractList) {
-        this.contractList = contractList;
+    public void setFacilityType(FacilityType facilityType) {
+        this.facilityType = facilityType;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        FacilityDto facilityDto= (FacilityDto) target;
+        CheckRegexFacility.checkName(facilityDto,errors);
+        CheckRegexFacility.checkCost(facilityDto,errors);
+        CheckRegexFacility.checkArea(facilityDto,errors);
+        CheckRegexFacility.checkMaxPeople(facilityDto,errors);
+        CheckRegexFacility. checkPoolArea(facilityDto,errors);
+        CheckRegexFacility. checkFloors(facilityDto,errors);
+
     }
 }

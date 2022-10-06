@@ -15,7 +15,8 @@
     <div class="row"><div th:replace="~{content::header}"></div></div>
     <div class="row"><nav th:replace="~{navbar-fragment::navbar}"></nav></div>
 
-    <div class="text-center" style="margin-top: 10px"><h2>Facility List</h2></div>
+    <div class="text-center" style="margin-top: 10px"><h2>Service List</h2></div>
+    <div class="row " style="margin-left: 150px;color: black" th:text="${message}"></div>
 
 
     <div class="row">
@@ -149,10 +150,14 @@
     </div>
 </div>
 </div>
+
+
 <script>
     function showModalDelete(deleteModalValue, showModal) {
         document.getElementById("delete_modal").innerText = showModal;
         document.getElementById("sendId").value = deleteModalValue;
+
+
 
     }
 </script>

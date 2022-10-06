@@ -15,7 +15,7 @@
 <div class="container-fluid" th:replace="~{content::header}"></div>
 
 <nav th:replace="~{navbar-fragment::navbar}"></nav>
-<div class="text-center" style="margin-top: 10px"><h2>Facility Create</h2></div>
+<div class="text-center" style="margin-top: 10px"><h2>Service Create</h2></div>
 
 <div class="container">
     <div class="row">
@@ -23,7 +23,7 @@
         </div>
 
         <div class="col-8">
-            <form th:action="@{/create/save/facility}" th:object="${facilityUpdate}"
+            <form th:action="@{/update/facility}" th:object="${facilityUpdate}"
                   method="post">
                 <div class="row">
                     <div class="col-6">

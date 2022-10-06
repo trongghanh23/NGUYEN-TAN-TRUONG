@@ -11,9 +11,10 @@
         </style>
     </head>
 <body>
-<div class="row"><div class="container-fluid" th:replace="~{content::header}"></div>
-
-    <nav th:replace="~{navbar-fragment::navbar}"></nav></div>
+<div class="container-fluid"><div class="row">
+    <div th:replace="~{content::header}">
+        <nav th:replace="~{navbar-fragment::navbar}"></nav>
+    </div></div>
 
 
 <div class="container-fluid">
@@ -239,7 +240,7 @@
 </div>
 
 
-
+</div>
 <script>
     function addContract(id) {
         document.getElementById("customerName").value = id;
