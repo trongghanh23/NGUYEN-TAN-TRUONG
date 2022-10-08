@@ -18,11 +18,13 @@ public class Employee {
     private Integer phoneNumber;
     private String email;
     private String address;
+    private  int isDelete;
+
     @JoinColumn(name = "division",referencedColumnName = "id")
     @ManyToOne
     private Division division;
     @JoinColumn(name = "educationDegree",referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne()
     private EducationDegree educationDegree;
 
     @JoinColumn(name ="positon",referencedColumnName = "id")
@@ -33,6 +35,22 @@ public class Employee {
     private List<Contract>contractList;
 
     public Employee() {
+    }
+
+    public Employee(Integer id, String name, String dateOfBirth, Integer idCard, Double salary, Integer phoneNumber, String email, String address, int isDelete, Division division, EducationDegree educationDegree, Position position, List<Contract> contractList) {
+        this.id = id;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.idCard = idCard;
+        this.salary = salary;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.isDelete = isDelete;
+        this.division = division;
+        this.educationDegree = educationDegree;
+        this.position = position;
+        this.contractList = contractList;
     }
 
     public Integer getId() {
@@ -129,5 +147,13 @@ public class Employee {
 
     public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
+    }
+
+    public int getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
     }
 }

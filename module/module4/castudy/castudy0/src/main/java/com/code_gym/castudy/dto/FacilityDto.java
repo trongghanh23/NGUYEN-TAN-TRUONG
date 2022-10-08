@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 
 public class FacilityDto implements Validator {
     private Integer id;
+
     private String name;
 
     private String area;
@@ -36,8 +37,7 @@ public class FacilityDto implements Validator {
     public FacilityDto() {
     }
 
-    public FacilityDto(Integer id, String name, String area, String cost, String maxPeople, String standardRoom, String description, String poolArea, String numberFloors, String facilityFree, RentType rentType, FacilityType facilityType) {
-        this.id = id;
+    public FacilityDto( String name, String area, String cost, String maxPeople, String standardRoom, String description, String poolArea, String numberFloors, String facilityFree, RentType rentType, FacilityType facilityType) {
         this.name = name;
         this.area = area;
         this.cost = cost;

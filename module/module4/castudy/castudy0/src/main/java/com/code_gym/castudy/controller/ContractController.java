@@ -29,7 +29,6 @@ public class ContractController {
         model.addAttribute("contractList", iContractService.findByNameContract(pageable));
         model.addAttribute("facility", iFacilityService.findAllFacility());
         model.addAttribute("customers", iCustomerService.findAllCustomer());
-        model.addAttribute("employees", employeeService.findAllEmployee());
         model.addAttribute("contract", new Contract());
         return ("/contract/list-contract");
     }

@@ -18,6 +18,7 @@ public class Customer {
     private String phoneNumber;
     private String email;
     private String address;
+
     @JoinColumn(name = "customerType", referencedColumnName = "id")
     @ManyToOne
     private CustomerType customerType;
@@ -120,4 +121,5 @@ public class Customer {
     public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
     }
+
 }

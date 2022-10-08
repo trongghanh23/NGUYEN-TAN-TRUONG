@@ -6,34 +6,38 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 public class CustomerDto implements Validator {
     private Integer id;
 
+    @NotBlank(message = "please enter")
     private String name;
 
+    @NotBlank(message = "please enter")
     private String dateOfBirth;
 
     private Boolean gender;
 
+    @NotBlank(message = "please enter")
     private String idCard;
 
+    @NotBlank(message = "please enter")
     private String phoneNumber;
 
-    @Email(message = "please enter abc@gmail")
+    @NotBlank(message = "please enter")
+    @Email(message = "please enter abc@gmail..")
     private String email;
 
+    @NotBlank(message = "please enter")
     private String address;
 
     private CustomerType customerType;
 
-
     public CustomerDto() {
     }
 
-
-    public CustomerDto(Integer id, String name, String dateOfBirth, Boolean gender, String idCard, String phoneNumber, String email, String address, CustomerType customerType) {
-        this.id = id;
+    public CustomerDto(String name, String dateOfBirth, Boolean gender, String idCard, String phoneNumber, String email, String address, CustomerType customerType) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
@@ -42,14 +46,7 @@ public class CustomerDto implements Validator {
         this.email = email;
         this.address = address;
         this.customerType = customerType;
-    }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -116,6 +113,14 @@ public class CustomerDto implements Validator {
         this.customerType = customerType;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public boolean supports(Class<?> clazz) {
         return false;
@@ -123,12 +128,11 @@ public class CustomerDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        CustomerDto customerDto = (CustomerDto) target;
-        CheckRegexCustomer.checkName(customerDto, errors);
-        CheckRegexCustomer.checkIdCard(customerDto, errors);
+        CustomerDto customerDto= (CustomerDto) target;
+        CheckRegexCustomer.checkName(customerDto,errors);
+        CheckRegexCustomer.checkIdCard(customerDto,errors);
         CheckRegexCustomer.checkPhoneNumber(customerDto,errors);
         CheckRegexCustomer.checkAge(customerDto,errors);
-
 
     }
 }

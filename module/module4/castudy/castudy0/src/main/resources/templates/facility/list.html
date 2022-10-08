@@ -61,7 +61,7 @@
             </tr>
             <tr th:each="facilitys,loop : ${facility}">
 
-                <th scope="row" th:text="${loop.count}"></th>
+                <th scope="row" th:text="${facility.number * facility.size + loop.count}"></th>
 
                 <td th:text="${facilitys.name}"></td>
                 <td th:text="${facilitys.area}"></td>

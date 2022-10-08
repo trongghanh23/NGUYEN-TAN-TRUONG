@@ -43,10 +43,16 @@ public class FacilityService implements IFacilityService {
         return iFacilityRepository.findById(id).orElse(null);
     }
 
+
     @Override
     public void delete(Integer id) {
         iFacilityRepository.deleteById(id);
 
+    }
+
+    @Override
+    public void updateFacility(Facility facility) {
+        iFacilityRepository.save(facility);
     }
 
 }

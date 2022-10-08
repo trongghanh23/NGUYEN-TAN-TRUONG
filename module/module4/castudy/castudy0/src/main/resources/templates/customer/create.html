@@ -19,7 +19,7 @@
         </div>
         <div class="col-6">
 
-            <form th:action="@{/create/save}" th:object="${customerDto}"
+            <form th:action="@{/customer/create/save}" th:object="${customerDto}"
                   method="post">
                 <div class="mb-3">
                     <input type="hidden" th:field="*{id}" class="form-control" id="ida" aria-describedby="User">

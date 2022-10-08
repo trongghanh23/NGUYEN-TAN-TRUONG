@@ -7,7 +7,7 @@ public class CheckRegexFacility {
     public static void checkName(FacilityDto facilityDto, Errors errors) {
 
         if (!facilityDto.getName().isEmpty()){
-            if (!facilityDto.getName().matches("^([A-Z0-9])[a-z0-9]+((\\s[A-Z0-9])[a-z0-9]+)+$")){
+            if (!facilityDto.getName().matches("^([A-Z][a-z ]+)+[0-9]*$")){
                 errors.rejectValue("name",
                         "name",
                         "No contain special characters, capitalize the first letter !");

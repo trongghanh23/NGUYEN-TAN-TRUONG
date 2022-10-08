@@ -18,13 +18,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/customer")
 public class CustomerController {
     @Autowired
     private ICustomerService iCustomerService;
     @Autowired
     private ICustomerTypeService iCustomerTypeService;
 
-    @GetMapping("/customer")
+    @GetMapping
     public String customerList(Model model, @PageableDefault(size = 5) Pageable pageable,
                                @RequestParam Optional<String> keyword) {
         String keyWordValue = keyword.orElse("");
@@ -33,7 +34,7 @@ public class CustomerController {
         return ("/customer/list");
     }
 
-    @GetMapping("/customer/showCreate")
+    @GetMapping("/showCreate")
     public String showCreate(Model model) {
         model.addAttribute("customerDto", new CustomerDto());
         model.addAttribute("showCustomerType", this.iCustomerTypeService.findAll());
@@ -41,23 +42,22 @@ public class CustomerController {
     }
 
     @PostMapping("/create/save")
+    public String save(@ModelAttribute("customerDto") @Validated CustomerDto customerDto, BindingResult bindingResult, Model model
+            , RedirectAttributes redirectAttributes) {
 
-    public String create(@ModelAttribute("customerDto") CustomerDto customerDto, @Validated BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
-        new CustomerDto().validate(customerDto,bindingResult);
-
-        if (bindingResult.hasErrors()){
+        new CustomerDto().validate(customerDto, bindingResult);
+        if (bindingResult.hasFieldErrors()) {
             model.addAttribute("showCustomerType", this.iCustomerTypeService.findAll());
             return ("/customer/create");
-        }else {
-            Customer customer=new Customer();
-            BeanUtils.copyProperties(customerDto,customer);
-            this.iCustomerService.save(customer);
-            redirectAttributes.addFlashAttribute("message", " Add new successfully! ");
-            return "redirect:/customer";
-
+        } else {
+            Customer customer = new Customer();
+            BeanUtils.copyProperties(customerDto, customer);
+            iCustomerService.save(customer);
+            redirectAttributes.addFlashAttribute("message", "successfully delete");
+            return ("redirect:/customer");
         }
-
     }
+
 
     @PostMapping("/delete")
     public String delete(@RequestParam Integer id, RedirectAttributes redirectAttributes) {
@@ -67,38 +67,37 @@ public class CustomerController {
     }
 
 
-    @GetMapping("customer/showUpdate")
+    @GetMapping("/showUpdate")
     public String showEditCustomerForm(@RequestParam Integer id, Model model) {
-
-        model.addAttribute("customer", this.iCustomerService.getId(id));
+        Customer customer=iCustomerService.getId(id);
+        CustomerDto customerDto=new CustomerDto();
+        BeanUtils.copyProperties(customer,customerDto);
+        model.addAttribute("customer", customerDto);
         model.addAttribute("showCustomerType", this.iCustomerTypeService.findAll());
 
         return "/customer/edit";
     }
 
-
-    @PostMapping("/update/customer")
-    public String updateSong(@ModelAttribute("customer") CustomerDto customerDto, @Validated BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
+    @PostMapping("/update")
+    public String saveUpdate(@ModelAttribute("customer") @Validated CustomerDto customerDto, BindingResult bindingResult, Model model
+            , RedirectAttributes redirectAttributes) {
         new CustomerDto().validate(customerDto, bindingResult);
-
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasFieldErrors()) {
             model.addAttribute("showCustomerType", this.iCustomerTypeService.findAll());
+
             return "/customer/edit";
         } else {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
-            this.iCustomerService.save(customer);
-            redirectAttributes.addFlashAttribute("message", " Add new successfully! ");
-            return "redirect:/customer";
-
+            iCustomerService.save(customer);
+            redirectAttributes.addFlashAttribute("message", "successfully delete");
+            return ("redirect:/customer");
         }
-
-
     }
 
 
-        @ExceptionHandler
-    public String error(Exception e) {
-        return "error";
-    }
+//    @ExceptionHandler
+//    public String error(Exception e) {
+//        return "error";
+//    }
 }

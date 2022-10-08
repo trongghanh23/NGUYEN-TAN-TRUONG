@@ -23,12 +23,16 @@
         </div>
 
         <div class="col-8">
-            <form th:action="@{/update/facility}" th:object="${facilityUpdate}"
+            <form th:action="@{/facility/update}" th:object="${facilityUpdate}"
                   method="post">
                 <div class="row">
                     <div class="col-6">
 
                         <label for="exampleInputEmail1" class="form-label"> Choose Facility</label>
+                        <div class="mb-3">
+                            <input type="hidden" th:field="*{id}" class="form-control" id="ida" aria-describedby="User">
+
+                        </div>
                         <div class="mb-3">
                             <select th:field="*{facilityType.id}" id="facility_type" class="form-select">
                                 <option th:each="facilityType : ${showFacilityType}"
