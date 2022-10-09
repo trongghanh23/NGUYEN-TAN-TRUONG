@@ -11,7 +11,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ContractController {
@@ -29,13 +31,24 @@ public class ContractController {
         model.addAttribute("contractList", iContractService.findByNameContract(pageable));
         model.addAttribute("facility", iFacilityService.findAllFacility());
         model.addAttribute("customers", iCustomerService.findAllCustomer());
+        model.addAttribute("employee", employeeService.findAll());
         model.addAttribute("contract", new Contract());
         return ("/contract/list-contract");
     }
 
-    @PostMapping("/save")
-    public String addContract(Contract contract) {
+    @GetMapping("/contract/showCreate")
+    public String showContract(Model model) {
+        model.addAttribute("contractList", new Contract());
+        model.addAttribute("facility", iFacilityService.findAllFacility());
+        model.addAttribute("customers", iCustomerService.findAllCustomer());
+        model.addAttribute("employee", employeeService.findAll());
+        return "/contract/create";
+    }
+
+    @PostMapping("/contract/create/save")
+    public String saveContract(@ModelAttribute Contract contract, RedirectAttributes redirectAttributes) {
         iContractService.save(contract);
+        redirectAttributes.addFlashAttribute("message","Successfully Create");
         return ("redirect:/contract");
 
     }

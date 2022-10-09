@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head th:replace="~{content::css}">
+
+    </head>
+<body>
+<div class="container-fluid" th:replace="~{content::header}"></div>
+
+<nav th:replace="~{navbar-fragment::navbar}"></nav>
+<div class="text-center" style="margin-top: 10px"><h2>Contract Create</h2></div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6">
+
+            <form th:action="@{/contract/create/save}" th:object="${contractList}"
+                  method="post">
+                <div class="mb-3">
+                    <input type="hidden" th:field="*{id}" class="form-control" id="ida" aria-describedby="User">
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Start Date</label>
+                    <input type="date" th:field="*{starDate}" class="form-control" id="firstName"
+                           aria-describedby="firstName">
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">End Date</label>
+                    <input type="date" th:field="*{endDate}" class="form-control" id="age" aria-describedby="age">
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Employee</label>
+
+                    <select th:field="*{employee}"  class="form-select">
+                        <option th:each="employeeList : ${employee}"
+                                th:value="${employeeList.id}"
+                                th:text="${employeeList.name}">
+
+                        </option>
+
+                    </select>
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Customer</label>
+
+                    <select th:field="*{customer}"  class="form-select">
+                        <option th:each="customerList : ${customers}"
+                                th:value="${customerList.id}"
+                                th:text="${customerList.name}">
+
+                        </option>
+
+                    </select>
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Facility</label>
+                    <select th:field="*{facility}"  class="form-select">
+                        <option th:each="facilityList : ${facility}"
+                                th:value="${facilityList.id}"
+                                th:text="${facilityList.name}">
+
+                        </option>
+
+                    </select>
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Deposit</label>
+                    <input type="text" th:field="*{deposit}" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp">
+                </div>
+
+                <div class="row">
+                    <div class="col-9">
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                    <div class="col-3">
+                        <a class="text-white btn btn-primary" href="/contract" style=" text-decoration: none">Back </a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+</body>
+
+</html>

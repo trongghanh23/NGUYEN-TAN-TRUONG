@@ -18,10 +18,6 @@ public interface ICustomerService {
 
     Customer getId(Integer id);
 
+
     void delete(Integer id);
-
-
-
-
-
 }
